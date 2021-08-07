@@ -17,12 +17,13 @@ namespace IvarsSykkelsjappe.Infrastructure.Extensions
 
             data.Database.Migrate();
 
-            SeedCategories(data);
+            SeedBikeCategories(data);
+            SeedProductCategories(data);
 
             return app;
         }
 
-        private static void SeedCategories(ApplicationDbContext data)
+        private static void SeedBikeCategories(ApplicationDbContext data)
         {
             if (data.BikesCategories.Any())
             {
@@ -46,6 +47,42 @@ namespace IvarsSykkelsjappe.Infrastructure.Extensions
                 new BikeCategory { Name = "Fixie/Single speed" },
                 new BikeCategory { Name = "Gravel" },
                 new BikeCategory { Name = "Tandem" }
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedProductCategories(ApplicationDbContext data)
+        {
+            if (data.ProductsCategories.Any())
+            {
+                return;
+            }
+
+            data.ProductsCategories.AddRange(new[]
+            {
+                new ProductCategory { Name = "Brakes" },
+                new ProductCategory { Name = "Chainrings" },
+                new ProductCategory { Name = "Chains" },
+                new ProductCategory { Name = "Chain tensioners" },
+                new ProductCategory { Name = "Seats" },
+                new ProductCategory { Name = "Bar ends" },
+                new ProductCategory { Name = "Grips" },
+                new ProductCategory { Name = "Rigid forks" },
+                new ProductCategory { Name = "Cassettes" },
+                new ProductCategory { Name = "Crank Arms" },
+                new ProductCategory { Name = "Gear kits" },
+                new ProductCategory { Name = "Group sets" },
+                new ProductCategory { Name = "Rear deraileurs" },
+                new ProductCategory { Name = "Shifters" },
+                new ProductCategory { Name = "Twist shifters" },
+                new ProductCategory { Name = "Triggers" },
+                new ProductCategory { Name = "Lights" },
+                new ProductCategory { Name = "Locks" },
+                new ProductCategory { Name = "Mudguards" },
+                new ProductCategory { Name = "Pedals" },
+                new ProductCategory { Name = "Tires" },
+                new ProductCategory { Name = "Wheels" },
             });
 
             data.SaveChanges();

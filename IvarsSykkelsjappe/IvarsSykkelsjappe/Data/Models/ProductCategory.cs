@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 namespace IvarsSykkelsjappe.Data.Models
 {
     using static DataConstants.Category;
-
-    public class BikeCategory
+        
+    public class ProductCategory
     {
-        public BikeCategory()
+        public ProductCategory()
         {
-            this.Bikes = new HashSet<Bike>();
+            this.Products = new HashSet<Product>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace IvarsSykkelsjappe.Data.Models
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        public ICollection<Bike> Bikes { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
