@@ -10,6 +10,9 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Properties\" />
     <None Remove="Services\" />
+    <None Remove="Data\Models\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Infrastructure\Extentions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -37,5 +40,13 @@
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="Services\" />
+    <Folder Include="Data\Models\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 </Project>
