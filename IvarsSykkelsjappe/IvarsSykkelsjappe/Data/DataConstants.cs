@@ -1,5 +1,4 @@
-﻿using System;
-namespace IvarsSykkelsjappe.Data
+﻿namespace IvarsSykkelsjappe.Data
 {
     public class DataConstants
     {
@@ -30,6 +29,11 @@ namespace IvarsSykkelsjappe.Data
             public const int DescriptionMinLength = 10;
 
             public const string ProductNumberRegularExpression = @"[A-Z]{2}[0-9]{6}";
+        }
+
+        public class Service
+        {
+            public const int NameMaxLength = 20;
         }
     }
 }

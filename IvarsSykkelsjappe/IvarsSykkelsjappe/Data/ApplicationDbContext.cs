@@ -20,6 +20,8 @@ namespace IvarsSykkelsjappe.Data
 
         public DbSet<ProductCategory> ProductsCategories { get; set; }
 
+        public DbSet<Service> Services { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
