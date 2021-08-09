@@ -18,6 +18,7 @@ namespace IvarsSykkelsjappe.Data.Models
         public string Email { get; set; }
 
         [Required]
+        [Phone]
         [MaxLength(PhoneNumberMaxLength)]
         public int PhoneNumber { get; set; }
 

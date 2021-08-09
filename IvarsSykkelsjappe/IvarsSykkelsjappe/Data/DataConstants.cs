@@ -41,5 +41,12 @@
             public const int FullNameMaxLength = 30;
             public const int PhoneNumberMaxLength = 30;
         }
+
+        public class Mechanic
+        {
+            public const string EmployeeNumberRegularExpression = @"[0-9]{3}[A-Z]4";
+            public const int FullNameMaxLength = 30;
+            public const int PhoneNumberMaxLength = 30;
+        }
     }
 }

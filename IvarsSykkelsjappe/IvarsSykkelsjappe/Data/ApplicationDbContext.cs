@@ -1,4 +1,5 @@
 ﻿using IvarsSykkelsjappe.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,8 @@ namespace IvarsSykkelsjappe.Data
         public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<PopUp> PopUps { get; set; }
+
+        public DbSet<Mechanic> Mechanics { get; set; }
 
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
@@ -53,6 +56,13 @@ namespace IvarsSykkelsjappe.Data
             builder
                 .Entity<ServiceOrder>()
                 .HasKey(so => new { so.ServiceId, so.OrderId });
+
+            builder
+                .Entity<Mechanic>()
+                .HasOne<IdentityUser>()
+                .WithOne()
+                .HasForeignKey<Mechanic>(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

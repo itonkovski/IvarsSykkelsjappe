@@ -32,6 +32,7 @@ namespace IvarsSykkelsjappe
             services
                 .AddDefaultIdentity<IdentityUser>(options => options
                     .SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews(options =>
