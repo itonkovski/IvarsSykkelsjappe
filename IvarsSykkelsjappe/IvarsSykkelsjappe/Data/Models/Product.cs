@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IvarsSykkelsjappe.Data.Models
@@ -7,6 +8,11 @@ namespace IvarsSykkelsjappe.Data.Models
 
     public class Product
     {
+        public Product()
+        {
+            this.ProductOrders = new HashSet<ProductOrder>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -38,5 +44,7 @@ namespace IvarsSykkelsjappe.Data.Models
         public int ProductCategoryId { get; set; }
 
         public ProductCategory ProductCategory { get; set; }
+
+        public ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

@@ -22,6 +22,14 @@ namespace IvarsSykkelsjappe.Data
 
         public DbSet<Service> Services { get; set; }
 
+        public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<PopUp> PopUps { get; set; }
+
+        public DbSet<ProductOrder> ProductOrders { get; set; }
+
+        public DbSet<ServiceOrder> ServiceOrders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
@@ -37,6 +45,14 @@ namespace IvarsSykkelsjappe.Data
                 .WithMany(x => x.Products)
                 .HasForeignKey(x => x.ProductCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<ProductOrder>()
+                .HasKey(po => new { po.ProductId, po.OrderId });
+
+            builder
+                .Entity<ServiceOrder>()
+                .HasKey(so => new { so.ServiceId, so.OrderId });
 
             base.OnModelCreating(builder);
         }

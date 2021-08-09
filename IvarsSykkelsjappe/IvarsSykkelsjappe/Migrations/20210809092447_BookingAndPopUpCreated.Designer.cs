@@ -4,14 +4,16 @@ using IvarsSykkelsjappe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvarsSykkelsjappe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210809092447_BookingAndPopUpCreated")]
+    partial class BookingAndPopUpCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,36 +114,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsReadyToPickUp")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("TimeToPickUp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.PopUp", b =>
                 {
                     b.Property<int>("Id")
@@ -156,7 +128,7 @@ namespace IvarsSykkelsjappe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DueTime")
+                    b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Location")
@@ -236,21 +208,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.ToTable("ProductsCategories");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ProductOrder", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "OrderId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("ProductOrders");
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -276,21 +233,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ServiceOrder", b =>
-                {
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ServiceId", "OrderId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("ServiceOrders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -504,17 +446,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Navigation("BikeCategory");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Order", b =>
-                {
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Booking", "Booking")
-                        .WithMany()
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Product", b =>
                 {
                     b.HasOne("IvarsSykkelsjappe.Data.Models.ProductCategory", "ProductCategory")
@@ -524,44 +455,6 @@ namespace IvarsSykkelsjappe.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductCategory");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ProductOrder", b =>
-                {
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Order", "Order")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Product", "Product")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ServiceOrder", b =>
-                {
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Order", "Order")
-                        .WithMany("ServiceOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Service", "Service")
-                        .WithMany("ServiceOrders")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -620,26 +513,9 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Navigation("Bikes");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Order", b =>
-                {
-                    b.Navigation("ProductOrders");
-
-                    b.Navigation("ServiceOrders");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Product", b =>
-                {
-                    b.Navigation("ProductOrders");
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ProductCategory", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Service", b =>
-                {
-                    b.Navigation("ServiceOrders");
                 });
 #pragma warning restore 612, 618
         }
