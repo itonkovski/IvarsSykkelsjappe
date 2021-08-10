@@ -11,6 +11,9 @@
             public const int ModelMaxLength = 20;
 
             public const int DescriptionMinLength = 10;
+
+            public const int YearMinValue = 1950;
+            public const int YearMaxValue = 2050;
         }
 
         public class Category

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Controllers
@@ -10,6 +11,7 @@ namespace IvarsSykkelsjappe.Controllers
 
         }
 
+        [Authorize]
         public IActionResult BookTime()
         {
             return View();

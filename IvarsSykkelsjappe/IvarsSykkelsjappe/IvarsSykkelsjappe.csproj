@@ -14,6 +14,8 @@
     <None Remove="Infrastructure\" />
     <None Remove="Infrastructure\Extentions\" />
     <None Remove="Data\Models\Enums\" />
+    <None Remove="Services\Bikes\" />
+    <None Remove="Views\Bikes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -45,10 +47,21 @@
     <Folder Include="Infrastructure\" />
     <Folder Include="Infrastructure\Extensions\" />
     <Folder Include="Data\Models\Enums\" />
+    <Folder Include="Services\Bikes\" />
+    <Folder Include="Views\Bikes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Views\Bikes\Create.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\IvarsLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>

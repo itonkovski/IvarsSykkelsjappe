@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IvarsSykkelsjappe.Infrastructure.Extensions;
+using IvarsSykkelsjappe.Services.Bikes;
 
 namespace IvarsSykkelsjappe
 {
@@ -45,6 +46,8 @@ namespace IvarsSykkelsjappe
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
+
+            services.AddTransient<IBikeService, BikeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
