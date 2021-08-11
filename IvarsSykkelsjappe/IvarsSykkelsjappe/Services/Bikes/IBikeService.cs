@@ -11,5 +11,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
         IEnumerable<BikeCategoryViewModel> GetBikeCategories();
 
         IEnumerable<BikeViewModel> GetAll();
+
+        BikeDetailsViewModel GetDetails(int id);
     }
 }

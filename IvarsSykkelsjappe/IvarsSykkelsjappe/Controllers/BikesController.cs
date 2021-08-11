@@ -45,5 +45,12 @@ namespace IvarsSykkelsjappe.Controllers
             this.bikeService.Add(bikeForm);
             return RedirectToAction(nameof(All));
         }
+
+        [Authorize]
+        public IActionResult Details(int id)
+        {
+            var bike = this.bikeService.GetDetails(id);
+            return View(bike);
+        }
     }
 }

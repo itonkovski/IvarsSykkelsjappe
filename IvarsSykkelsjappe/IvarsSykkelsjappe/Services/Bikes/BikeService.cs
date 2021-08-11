@@ -61,5 +61,24 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Name = x.Name
                 })
                 .ToList();
+
+        public BikeDetailsViewModel GetDetails(int id)
+        {
+            var bike = this.dbContext.Bikes
+                .Where(x => x.Id == id)
+                .Select(x => new BikeDetailsViewModel
+                {
+                    Id = x.Id,
+                    Model = x.Model,
+                    Brand = x.Brand,
+                    Price = x.Price,
+                    Year = x.Year,
+                    Description = x.Description,
+                    BikeCategory = x.BikeCategory.Name,
+                    ImageUrl = x.ImageUrl,
+                })
+                .FirstOrDefault();
+            return bike;
+        }
     }
 }
