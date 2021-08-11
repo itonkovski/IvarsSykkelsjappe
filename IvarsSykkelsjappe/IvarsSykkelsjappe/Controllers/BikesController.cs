@@ -35,6 +35,12 @@ namespace IvarsSykkelsjappe.Controllers
         [Authorize]
         public IActionResult Create(BikeFormModel bikeForm)
         {
+            if (!ModelState.IsValid)
+            {
+                bikeForm.Categories = this.bikeService.GetBikeCategories();
+                return View(bikeForm);
+            }
+
             this.bikeService.Add(bikeForm);
             return RedirectToAction(nameof(OurBikes));
         }
