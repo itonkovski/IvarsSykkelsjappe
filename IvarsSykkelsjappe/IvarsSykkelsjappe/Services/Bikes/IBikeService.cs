@@ -9,5 +9,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
         void Add(BikeFormModel bike);
 
         IEnumerable<BikeCategoryViewModel> GetBikeCategories();
+
+        IEnumerable<BikeViewModel> GetAll();
     }
 }

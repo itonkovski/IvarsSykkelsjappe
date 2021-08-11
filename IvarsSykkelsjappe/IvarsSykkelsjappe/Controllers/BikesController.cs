@@ -16,9 +16,10 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
-        public IActionResult OurBikes()
+        public IActionResult All()
         {
-            return this.View();
+            var bikes = this.bikeService.GetAll();
+            return this.View(bikes);
         }
 
         [Authorize]
@@ -42,7 +43,7 @@ namespace IvarsSykkelsjappe.Controllers
             }
 
             this.bikeService.Add(bikeForm);
-            return RedirectToAction(nameof(OurBikes));
+            return RedirectToAction(nameof(All));
         }
     }
 }
