@@ -9,6 +9,7 @@
             <table class="table">
                 <thead class="thead-dark" align="center">
                     <tr>
+                        <th scope="col">Image</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Model</th>
                         <th scope="col">Price</th>
@@ -20,7 +21,10 @@
                 <tbody align="center">
                     @foreach (var bike in Model)
                     {
-                    <tr>
+                    <tr align="center">
+                        <td>
+                            <img class="tableImage" src="/images/Ivarslogo.png"/>
+                        </td>
                         <th scope="row">@bike.Brand</th>
                         <td>@bike.Model</td>
                         <td>@bike.Price</td>

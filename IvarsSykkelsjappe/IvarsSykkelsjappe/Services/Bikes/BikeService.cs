@@ -32,6 +32,26 @@ namespace IvarsSykkelsjappe.Services.Bikes
             this.dbContext.SaveChanges();
         }
 
+        public IEnumerable<BikeSearchQueryModel> AllBikes()
+        {
+            var bikes = this.dbContext
+                .Bikes
+                .OrderByDescending(x => x.Id)
+                .Select(x => new BikeSearchQueryModel
+                {
+                    Id = x.Id,
+                    Brand = x.Brand,
+                    Model = x.Model,
+                    Price = x.Price,
+                    ImageUrl = x.ImageUrl,
+                    Year = x.Year,
+                    BikeCategory = x.BikeCategory.Name
+                })
+                .ToList();
+
+            return bikes;
+        }
+
         public IEnumerable<BikeViewModel> GetAll()
         {
             var bikes = this.dbContext

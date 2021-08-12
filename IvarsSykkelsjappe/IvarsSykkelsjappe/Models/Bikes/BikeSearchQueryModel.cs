@@ -5,21 +5,18 @@ namespace IvarsSykkelsjappe.Models.Bikes
 {
     public class BikeSearchQueryModel
     {
-        public const int BikesPerPage = 3;
+        public int Id { get; set; }
 
         public string Brand { get; set; }
 
-        public IEnumerable<string> Brands { get; set; }
+        public string Model { get; set; }
 
-        public int CurrentPage { get; set; } = 1;
+        public decimal Price { get; set; }
 
-        public int TotalBikes { get; set; }
+        public string ImageUrl { get; set; }
 
-        [Display(Name = "Search by text")]
-        public string SearchTerm { get; set; }
+        public int Year { get; set; }
 
-        public BikeSorting Sorting { get; set; }
-
-        public IEnumerable<BikeDetailsViewModel> Bikes { get; set; }
+        public string BikeCategory { get; set; }
     }
 }

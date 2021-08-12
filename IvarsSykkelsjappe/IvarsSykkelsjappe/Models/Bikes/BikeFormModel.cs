@@ -7,7 +7,7 @@ namespace IvarsSykkelsjappe.Models.Bikes
     using static Data.DataConstants.Bike;
 
     public class BikeFormModel
-    {   
+    {
         [Required]
         [StringLength(
             BrandMaxLength,

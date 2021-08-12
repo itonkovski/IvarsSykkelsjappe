@@ -1,45 +1,56 @@
-﻿<div class="row">
+﻿@model BookingFormModel
+@{
+    ViewData["Title"] = "Book appointment";
+}
+<div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <h2 class="heading-margin text-center">Make a booking at our Workshop</h2>
-            <form method="post">
-              <div class="form-group">
-                <label>Full Name</label>
-                <input class="form-control" placeholder="FullName">
-                <span class="small text-danger"></span>
-              </div>
-              <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control" placeholder="john.doe@email.com" required>
-                <span class="small text-danger"></span>
-              </div>
-              <div class="form-group">
-                <label>Your phone number</label>
-                <input type="tel" class="form-control" placeholder="+47 955 55 955" required>
-                <span class="small text-danger"></span>
-              </div>
-              <hr>
-              <div class="form-group">
-                <label>Book-in Date</label>
-                <input type="date" class="form-control" required>
-              </div>
-              <hr>
-              <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" rows="5" placeholder="Tell us anything else that might be important." required></textarea>
-                <span class="small text-danger"></span>
-              </div>
-              <hr>
-              <div class="form-group">
-                <label>Image</label>
-                <input class="form-control" placeholder="Upload an image">
-                <span class="small text-danger"></span>
-              </div>
-              <hr>
-              <div class="form-group text-center">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="FullName">Full name</label>
+                <input asp-for="FullName" class="form-control" placeholder="John Doe">
+                <span asp-validation-for="FullName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email address</label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="john.doe@email.com" required>
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Your phone number</label>
+                <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="+47 955 55 955" required>
+                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label asp-for="TimeSlot">Book-in Date</label>
+                <input asp-for="TimeSlot" type="date" class="form-control" required>
+                <span asp-validation-for="TimeSlot" class="small text-danger"></span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label asp-for="Details">Description</label>
+                <textarea asp-for="Details" class="form-control" rows="5" placeholder="Tell us anything else that might be important." required></textarea>
+                <span asp-validation-for="Details" class="small text-danger"></span>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label asp-for="ImageUrl">Image</label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Upload an image">
+                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
+                <input type="file" name="Image" />
+            </div>
+            <hr>
+            <div class="form-group">
+                <input asp-for="Agreements">
+                <label asp-for="Agreements">I agree with the terms and conditions.</label>
+                <span asp-validation-for="Agreements" class="small text-danger"></span>
+            </div>
+            <div class="form-group text-center">
                 <div class="button-holder">
-                    <a href="/Bookings/AddUserToBooking?bookingId=Id" class="btn btn-primary btn-block text-uppercase">Book</a>
+                    <button href="/Bookings/AddUserToBike?bikeId=Id" type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>
                 </div>
             </div>
-            </form>
+        </form>
     </div>
 </div>

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IvarsSykkelsjappe.Infrastructure.Extensions;
 using IvarsSykkelsjappe.Services.Bikes;
+using IvarsSykkelsjappe.Services.Bookings;
 
 namespace IvarsSykkelsjappe
 {
@@ -48,6 +49,7 @@ namespace IvarsSykkelsjappe
             });
 
             services.AddTransient<IBikeService, BikeService>();
+            services.AddTransient<IBookingService, BookingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

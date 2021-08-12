@@ -1,5 +1,4 @@
-﻿using System;
-using IvarsSykkelsjappe.Models.Bikes;
+﻿using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +15,16 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
-        public IActionResult All()
+        public IActionResult AllAdmin()
         {
             var bikes = this.bikeService.GetAll();
+            return this.View(bikes);
+        }
+
+        [Authorize]
+        public IActionResult AllCustomer()
+        {
+            var bikes = this.bikeService.AllBikes();
             return this.View(bikes);
         }
 
@@ -43,7 +49,7 @@ namespace IvarsSykkelsjappe.Controllers
             }
 
             this.bikeService.Add(bikeForm);
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(AllCustomer));
         }
 
         [Authorize]
