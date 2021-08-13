@@ -100,5 +100,24 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 .FirstOrDefault();
             return bike;
         }
+
+        public IEnumerable<BikeLatestIndexCarousel> Latest()
+        {
+            var bikes = this.dbContext
+                .Bikes
+                .OrderByDescending(c => c.Id)
+                .Select(x => new BikeLatestIndexCarousel
+                {
+                    Id = x.Id,
+                    Brand = x.Brand,
+                    Model = x.Model,
+                    ImageUrl = x.ImageUrl,
+                    Year = x.Year
+                })
+                .Take(3)
+                .ToList();
+
+            return bikes;
+        }
     }
 }

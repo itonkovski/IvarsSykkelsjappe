@@ -18,14 +18,14 @@ namespace IvarsSykkelsjappe.Controllers
         public IActionResult AllAdmin()
         {
             var bikes = this.bikeService.GetAll();
-            return this.View(bikes);
+            return View(bikes);
         }
 
         [Authorize]
         public IActionResult AllCustomer()
         {
             var bikes = this.bikeService.AllBikes();
-            return this.View(bikes);
+            return View(bikes);
         }
 
         [Authorize]

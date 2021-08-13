@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<BikeSearchQueryModel>
-
+@{
+    ViewData["Title"] = "Our Bikes";
+}
+<h1 style="margin: 5%; text-align: center;">Our bikes are unique and made to individual order</h1>
 <div class="row">
     @foreach (var bike in Model)
     {
-    <div class="col-md-4">
-        <div class="card">
-            <img class="card-img-top" src="@bike.ImageUrl" alt="@bike.Brand @bike.Model - @bike.Brand ">
-            <div class="card-body text-center">
-                <h5 class="card-title text-center">@bike.Brand - (@bike.Model, @bike.Year)</h5>
-                <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-primary">Details</a>
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <div class="card">
+                <img class="card-img-top" src="@bike.ImageUrl" alt="@bike.Brand @bike.Model - @bike.Brand ">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">@bike.Brand - (@bike.Model, @bike.Year)</h5>
+                    <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-primary">Details</a>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>

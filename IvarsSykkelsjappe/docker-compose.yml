@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ivarssykkelsjappe:
+    image: ${DOCKER_REGISTRY-}ivarssykkelsjappe
+    build:
+      context: .
+      dockerfile: IvarsSykkelsjappe/Dockerfile

@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-IvarsSykkelsjappe-5F435CA7-952B-4BBF-BBD4-682AF436E748</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,9 @@
     <None Remove="Data\Models\Enums\" />
     <None Remove="Services\Bikes\" />
     <None Remove="Views\Bikes\" />
+    <None Remove="Models\Bookings\" />
+    <None Remove="Services\Bookings\" />
+    <None Remove="Views\Bookings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -49,6 +53,9 @@
     <Folder Include="Data\Models\Enums\" />
     <Folder Include="Services\Bikes\" />
     <Folder Include="Views\Bikes\" />
+    <Folder Include="Models\Bookings\" />
+    <Folder Include="Services\Bookings\" />
+    <Folder Include="Views\Bookings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -67,6 +74,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bikes\Details.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Bookings\BookTime.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Bikes\AllCustomer.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Home\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

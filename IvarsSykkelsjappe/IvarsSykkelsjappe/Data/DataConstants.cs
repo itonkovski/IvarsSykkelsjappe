@@ -42,7 +42,11 @@
         public class Booking
         {
             public const int FullNameMaxLength = 30;
+            public const int MinNameMaxLength = 6;
+
             public const int PhoneNumberMaxLength = 30;
+
+            public const int DetailsMinLength = 10;
         }
 
         public class Mechanic
