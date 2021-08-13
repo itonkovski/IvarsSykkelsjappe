@@ -87,4 +87,33 @@ body {
     border-radius: 50%;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-image: none;
+}
 
+.carousel-control-next-icon:after {
+    content: '>';
+    font-size: 55px;
+    color: red;
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 55px;
+    color: red;
+}
+
+.bg-cover {
+    background-attachment: static;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://placeimg.com/1000/480/nature)
+}
