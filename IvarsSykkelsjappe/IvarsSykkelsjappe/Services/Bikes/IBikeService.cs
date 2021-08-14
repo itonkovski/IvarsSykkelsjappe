@@ -12,10 +12,12 @@ namespace IvarsSykkelsjappe.Services.Bikes
 
         IEnumerable<BikeViewModel> GetAll();
 
-        IEnumerable<BikeSearchQueryModel> AllBikes();
+        IEnumerable<BikeListingViewModel> AllBikes();
 
         BikeDetailsViewModel GetDetails(int id);
 
         IEnumerable<BikeLatestIndexCarousel> Latest();
+
+        public void AllSearch(AllBikesQueryModel bikeModel);
     }
 }

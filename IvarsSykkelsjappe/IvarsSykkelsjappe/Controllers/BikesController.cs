@@ -22,10 +22,10 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
-        public IActionResult AllCustomer()
+        public IActionResult AllCustomer(AllBikesQueryModel queryModel)
         {
-            var bikes = this.bikeService.AllBikes();
-            return View(bikes);
+            this.bikeService.AllSearch(queryModel);
+            return View(queryModel);
         }
 
         [Authorize]
