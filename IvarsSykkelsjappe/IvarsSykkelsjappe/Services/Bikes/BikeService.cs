@@ -57,8 +57,12 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 _ => bikesQuery.OrderByDescending(x => x.Id)
             };
 
+            var totalBikes = bikesQuery
+                .Count();
+
             var bikes = bikesQuery
-                .OrderByDescending(c => c.Id)
+                .Skip((queryModel.CurrentPage - 1) * AllBikesQueryModel.BikesPerPage)
+                .Take(AllBikesQueryModel.BikesPerPage)
                 .Select(x => new BikeListingViewModel
                 {
                     Id = x.Id,
@@ -77,6 +81,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 .OrderBy(x => x)
                 .ToList();
 
+            queryModel.TotalBikes = totalBikes;
             queryModel.Brands = bikeBrands;
             queryModel.Bikes = bikes;
         }
