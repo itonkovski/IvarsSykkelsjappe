@@ -33,7 +33,7 @@
                 <label asp-for="Description"></label>
                 <textarea asp-for="Description" readonly class="form-control" rows="5"></textarea>
             </div>
-            @if (!User.IsInRole("Admin"))
+            @if (!User.IsInRole("Admin") && !User.IsInRole("Mechanic"))
             {
                 <div class="form-group text-center">
                     <div class="button-holder">
@@ -44,4 +44,4 @@
 
         </div>
     </div>
-</section>
+</section>  

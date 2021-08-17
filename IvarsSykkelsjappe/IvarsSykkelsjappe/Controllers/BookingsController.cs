@@ -15,6 +15,7 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult BookTime()
         {
             return View();
@@ -22,6 +23,7 @@ namespace IvarsSykkelsjappe.Controllers
 
         [HttpPost]
         [Authorize]
+        [Authorize(Roles = "Admin, User")]
         public IActionResult BookTime(BookingFormModel bookingForm)
         {
             if (!ModelState.IsValid)

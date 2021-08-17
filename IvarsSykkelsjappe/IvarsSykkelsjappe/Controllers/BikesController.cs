@@ -38,6 +38,7 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View(new BikeFormModel
@@ -49,6 +50,7 @@ namespace IvarsSykkelsjappe.Controllers
 
         [HttpPost]
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(BikeFormModel bikeForm)
         {
             if (!ModelState.IsValid)
