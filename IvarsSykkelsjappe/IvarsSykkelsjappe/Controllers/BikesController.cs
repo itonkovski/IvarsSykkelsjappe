@@ -15,10 +15,19 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult AllAdmin()
         {
             var bikes = this.bikeService.GetAll();
             return View(bikes);
+        }
+
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            var bike = this.bikeService.GetDetails(id);
+            return View(bike);
         }
 
         [Authorize]
