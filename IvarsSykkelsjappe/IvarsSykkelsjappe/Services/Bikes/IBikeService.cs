@@ -10,6 +10,8 @@ namespace IvarsSykkelsjappe.Services.Bikes
 
         void Edit(BikeFormModel bike, int id);
 
+        void Delete(int id);
+
         IEnumerable<BikeCategoryViewModel> GetBikeCategories();
 
         IEnumerable<BikeViewModel> GetAll();

@@ -101,5 +101,13 @@ namespace IvarsSykkelsjappe.Controllers
             var bike = this.bikeService.GetDetails(id);
             return View(bike);
         }
+
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
+        {
+            this.bikeService.Delete(id);
+            return RedirectToAction(nameof(AllAdmin));
+        }
     }
 }

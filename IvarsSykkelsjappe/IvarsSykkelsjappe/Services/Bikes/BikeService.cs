@@ -188,6 +188,13 @@ namespace IvarsSykkelsjappe.Services.Bikes
 
         }
 
+        public void Delete(int id)
+        {
+            var bike = this.dbContext.Bikes.Find(id);
+            this.dbContext.Bikes.Remove(bike);
+            this.dbContext.SaveChanges();
+        }
+
         public IEnumerable<BikeLatestIndexCarousel> Latest()
         {
             var bikes = this.dbContext
