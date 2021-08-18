@@ -20,6 +20,7 @@
     <None Remove="Models\Bookings\" />
     <None Remove="Services\Bookings\" />
     <None Remove="Views\Bookings\" />
+    <None Remove="Views\PopUps\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -56,6 +57,7 @@
     <Folder Include="Models\Bookings\" />
     <Folder Include="Services\Bookings\" />
     <Folder Include="Views\Bookings\" />
+    <Folder Include="Views\PopUps\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -119,6 +121,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bikes\Edit.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\PopUps\PopUp.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\PopUps\PopUps.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
