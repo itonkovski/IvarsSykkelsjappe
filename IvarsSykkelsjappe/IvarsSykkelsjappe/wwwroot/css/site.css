@@ -111,8 +111,8 @@ body {
 }
 
 .bg-cover {
-    background-attachment: static;
-    background-position: center;
+    background-attachment: fixed;
+    background-position: inherit;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(/images/BannerMockUp.jpeg)

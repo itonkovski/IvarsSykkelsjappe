@@ -154,6 +154,40 @@ namespace IvarsSykkelsjappe.Services.Bikes
             return bike;
         }
 
+        public BikeFormModel GetEdit(int id)
+        {
+            var bike = this.dbContext.Bikes
+                .Where(x => x.Id == id)
+                .Select(x => new BikeFormModel
+                {
+                    Model = x.Model,
+                    Brand = x.Brand,
+                    Price = x.Price,
+                    Year = x.Year,
+                    Description = x.Description,
+                    BikeCategoryId = x.BikeCategoryId,
+                    ImageUrl = x.ImageUrl,
+                })
+                .FirstOrDefault();
+            return bike;
+        }
+
+        public void Edit(BikeFormModel bike, int id)
+        {
+            var bikeData = this.dbContext.Bikes.Find(id);
+
+            bikeData.Model = bike.Model;
+            bikeData.Brand = bike.Brand;
+            bikeData.Price = bike.Price;
+            bikeData.Year = bike.Year;
+            bikeData.Description = bike.Description;
+            bikeData.BikeCategoryId = bike.BikeCategoryId;
+            bikeData.ImageUrl = bike.ImageUrl;
+
+            this.dbContext.SaveChanges();
+
+        }
+
         public IEnumerable<BikeLatestIndexCarousel> Latest()
         {
             var bikes = this.dbContext

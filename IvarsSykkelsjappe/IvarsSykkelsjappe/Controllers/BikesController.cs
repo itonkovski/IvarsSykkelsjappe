@@ -26,8 +26,40 @@ namespace IvarsSykkelsjappe.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
-            var bike = this.bikeService.GetDetails(id);
-            return View(bike);
+            if (!User.IsInRole("Admin"))
+            {
+                return Unauthorized();
+            }
+
+            var bike = this.bikeService.GetEdit(id);
+
+            return View(new BikeFormModel
+            {
+                Brand = bike.Brand,
+                Model = bike.Model,
+                Description = bike.Description,
+                Price = bike.Price,
+                ImageUrl = bike.ImageUrl,
+                Year = bike.Year,
+                BikeCategoryId = bike.BikeCategoryId,
+                Categories = this.bikeService.GetBikeCategories()
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(BikeFormModel bikeModel ,int id)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                bikeModel.Categories = this.bikeService.GetBikeCategories();
+                return View(bikeModel);
+            }
+
+            this.bikeService.Edit(bikeModel, id);
+            return RedirectToAction(nameof(AllCustomer));
         }
 
         [Authorize]

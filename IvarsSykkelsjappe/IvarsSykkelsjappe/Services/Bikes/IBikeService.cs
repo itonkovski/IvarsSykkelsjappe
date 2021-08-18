@@ -8,6 +8,8 @@ namespace IvarsSykkelsjappe.Services.Bikes
     {
         void Add(BikeFormModel bike);
 
+        void Edit(BikeFormModel bike, int id);
+
         IEnumerable<BikeCategoryViewModel> GetBikeCategories();
 
         IEnumerable<BikeViewModel> GetAll();
@@ -15,6 +17,8 @@ namespace IvarsSykkelsjappe.Services.Bikes
         IEnumerable<BikeListingViewModel> AllBikes();
 
         BikeDetailsViewModel GetDetails(int id);
+
+        BikeFormModel GetEdit(int id);
 
         IEnumerable<BikeLatestIndexCarousel> Latest();
 

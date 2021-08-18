@@ -1,4 +1,7 @@
-﻿namespace IvarsSykkelsjappe.Models.Bikes
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace IvarsSykkelsjappe.Models.Bikes
 {
     public class BikeDetailsViewModel : BikeViewModel
     {
