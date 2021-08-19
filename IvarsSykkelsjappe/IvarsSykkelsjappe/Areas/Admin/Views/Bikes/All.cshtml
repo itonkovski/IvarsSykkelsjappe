@@ -30,17 +30,17 @@
                         <td>@bike.BikeCategory</td>
                         <td>
                             <div class="button-holder">
-                                <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
+                                <a asp-area="Admin" asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
                             </div>
                         </td>
                         <td>
                             <div class="button-holder">
-                                <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
+                                <a asp-area="Admin" asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
                             </div>
                         </td>
                         <td>
                             <div class="button-holder">
-                                <a asp-controller="Bikes" asp-action="Delete" asp-route-id="@bike.Id" class="btn btn-danger text-uppercase">Delete</a>
+                                <a asp-area="Admin" asp-controller="Bikes" asp-action="Delete" asp-route-id="@bike.Id" class="btn btn-danger text-uppercase">Delete</a>
                             </div>
                         </td>
                     </tr>
