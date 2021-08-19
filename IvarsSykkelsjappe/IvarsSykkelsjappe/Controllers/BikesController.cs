@@ -1,4 +1,5 @@
-﻿using IvarsSykkelsjappe.Models.Bikes;
+﻿using AutoMapper;
+using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,12 @@ namespace IvarsSykkelsjappe.Controllers
     public class BikesController : Controller
     {
         private readonly IBikeService bikeService;
+        private readonly IMapper mapper;
 
-        public BikesController(IBikeService bikeService)
+        public BikesController(IBikeService bikeService, IMapper mapper)
         {
             this.bikeService = bikeService;
+            this.mapper = mapper;
         }
 
         [Authorize]
@@ -33,17 +36,24 @@ namespace IvarsSykkelsjappe.Controllers
 
             var bike = this.bikeService.GetEdit(id);
 
-            return View(new BikeFormModel
-            {
-                Brand = bike.Brand,
-                Model = bike.Model,
-                Description = bike.Description,
-                Price = bike.Price,
-                ImageUrl = bike.ImageUrl,
-                Year = bike.Year,
-                BikeCategoryId = bike.BikeCategoryId,
-                Categories = this.bikeService.GetBikeCategories()
-            });
+            var bikeForm = this.mapper.Map<BikeFormModel>(bike);
+
+            bikeForm.Categories = this.bikeService.GetBikeCategories();
+
+            return View(bikeForm);
+
+            //without AutoMapper
+            //return View(new BikeFormModel
+            //{
+            //    Brand = bike.Brand,
+            //    Model = bike.Model,
+            //    Description = bike.Description,
+            //    Price = bike.Price,
+            //    ImageUrl = bike.ImageUrl,
+            //    Year = bike.Year,
+            //    BikeCategoryId = bike.BikeCategoryId,
+            //    Categories = this.bikeService.GetBikeCategories()
+            //});
         }
 
         [Authorize]
