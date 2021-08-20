@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bikes;
@@ -9,10 +11,12 @@ namespace IvarsSykkelsjappe.Services.Bikes
     public class BikeService : IBikeService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public BikeService(ApplicationDbContext dbContext)
+        public BikeService(ApplicationDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public void Add(BikeFormModel bike)
@@ -63,15 +67,16 @@ namespace IvarsSykkelsjappe.Services.Bikes
             var bikes = bikesQuery
                 .Skip((queryModel.CurrentPage - 1) * AllBikesQueryModel.BikesPerPage)
                 .Take(AllBikesQueryModel.BikesPerPage)
-                .Select(x => new BikeListingViewModel
-                {
-                    Id = x.Id,
-                    Brand = x.Brand,
-                    Model = x.Model,
-                    Year = x.Year,
-                    ImageUrl = x.ImageUrl,
-                    BikeCategory = x.BikeCategory.Name
-                })
+                .ProjectTo<BikeListingViewModel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeListingViewModel
+                //{
+                //    Id = x.Id,
+                //    Brand = x.Brand,
+                //    Model = x.Model,
+                //    Year = x.Year,
+                //    ImageUrl = x.ImageUrl,
+                //    BikeCategory = x.BikeCategory.Name
+                //})
                 .ToList();
 
             var bikeBrands = this.dbContext
@@ -86,38 +91,20 @@ namespace IvarsSykkelsjappe.Services.Bikes
             queryModel.Bikes = bikes;
         }
 
-        public IEnumerable<BikeListingViewModel> AllBikes()
-        {
-            var bikes = this.dbContext
-                .Bikes
-                .OrderByDescending(x => x.Id)
-                .Select(x => new BikeListingViewModel
-                {
-                    Id = x.Id,
-                    Brand = x.Brand,
-                    Model = x.Model,
-                    ImageUrl = x.ImageUrl,
-                    Year = x.Year,
-                    BikeCategory = x.BikeCategory.Name
-                })
-                .ToList();
-
-            return bikes;
-        }
-
         public IEnumerable<BikeViewModel> GetAll()
         {
             var bikes = this.dbContext
                 .Bikes
-                .Select(x => new BikeViewModel
-                {
-                    Id = x.Id,
-                    Brand = x.Brand,
-                    Model = x.Model,
-                    Price = x.Price,
-                    Year = x.Year,
-                    BikeCategory = x.BikeCategory.Name
-                })
+                .ProjectTo<BikeViewModel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeViewModel
+                //{
+                //    Id = x.Id,
+                //    Brand = x.Brand,
+                //    Model = x.Model,
+                //    Price = x.Price,
+                //    Year = x.Year,
+                //    BikeCategory = x.BikeCategory.Name
+                //})
                 .OrderBy(x => x.Brand)
                 .ThenBy(x => x.Model)
                 .ToList();
@@ -128,28 +115,30 @@ namespace IvarsSykkelsjappe.Services.Bikes
         public IEnumerable<BikeCategoryViewModel> GetBikeCategories()
             => this.dbContext
                 .BikesCategories
-                .Select(x => new BikeCategoryViewModel
-                {
-                    BikeCategoryId = x.Id,
-                    Name = x.Name
-                })
+                .ProjectTo<BikeCategoryViewModel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeCategoryViewModel
+                //{
+                //    BikeCategoryId = x.Id,
+                //    Name = x.Name
+                //})
                 .ToList();
 
         public BikeDetailsViewModel GetDetails(int id)
         {
             var bike = this.dbContext.Bikes
                 .Where(x => x.Id == id)
-                .Select(x => new BikeDetailsViewModel
-                {
-                    Id = x.Id,
-                    Model = x.Model,
-                    Brand = x.Brand,
-                    Price = x.Price,
-                    Year = x.Year,
-                    Description = x.Description,
-                    BikeCategory = x.BikeCategory.Name,
-                    ImageUrl = x.ImageUrl,
-                })
+                .ProjectTo<BikeDetailsViewModel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeDetailsViewModel
+                //{
+                //    Id = x.Id,
+                //    Model = x.Model,
+                //    Brand = x.Brand,
+                //    Price = x.Price,
+                //    Year = x.Year,
+                //    Description = x.Description,
+                //    BikeCategory = x.BikeCategory.Name,
+                //    ImageUrl = x.ImageUrl,
+                //})
                 .FirstOrDefault();
             return bike;
         }
@@ -158,16 +147,17 @@ namespace IvarsSykkelsjappe.Services.Bikes
         {
             var bike = this.dbContext.Bikes
                 .Where(x => x.Id == id)
-                .Select(x => new BikeFormModel
-                {
-                    Model = x.Model,
-                    Brand = x.Brand,
-                    Price = x.Price,
-                    Year = x.Year,
-                    Description = x.Description,
-                    BikeCategoryId = x.BikeCategoryId,
-                    ImageUrl = x.ImageUrl,
-                })
+                .ProjectTo<BikeFormModel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeFormModel
+                //{
+                //    Model = x.Model,
+                //    Brand = x.Brand,
+                //    Price = x.Price,
+                //    Year = x.Year,
+                //    Description = x.Description,
+                //    BikeCategoryId = x.BikeCategoryId,
+                //    ImageUrl = x.ImageUrl,
+                //})
                 .FirstOrDefault();
             return bike;
         }
@@ -200,14 +190,15 @@ namespace IvarsSykkelsjappe.Services.Bikes
             var bikes = this.dbContext
                 .Bikes
                 .OrderByDescending(c => c.Id)
-                .Select(x => new BikeLatestIndexCarousel
-                {
-                    Id = x.Id,
-                    Brand = x.Brand,
-                    Model = x.Model,
-                    ImageUrl = x.ImageUrl,
-                    Year = x.Year
-                })
+                .ProjectTo<BikeLatestIndexCarousel>(this.mapper.ConfigurationProvider)
+                //.Select(x => new BikeLatestIndexCarousel
+                //{
+                //    Id = x.Id,
+                //    Brand = x.Brand,
+                //    Model = x.Model,
+                //    ImageUrl = x.ImageUrl,
+                //    Year = x.Year
+                //})
                 .Take(3)
                 .ToList();
 
