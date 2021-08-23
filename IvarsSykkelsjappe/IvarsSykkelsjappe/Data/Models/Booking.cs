@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IvarsSykkelsjappe.Data.Models
 {
@@ -18,15 +19,16 @@ namespace IvarsSykkelsjappe.Data.Models
         public string Email { get; set; }
 
         [Required]
-        [Phone]
         [MaxLength(PhoneNumberMaxLength)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public DateTime TimeSlot { get; set; }
 
         [Required]
         public string Details { get; set; }
 
-        public string ImageUrl { get; set; }
+        public int ClientId { get; set; }
+
+        public Client Client { get; set; }
     }
 }

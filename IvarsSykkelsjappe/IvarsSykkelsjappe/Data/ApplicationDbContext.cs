@@ -29,6 +29,8 @@ namespace IvarsSykkelsjappe.Data
 
         public DbSet<Mechanic> Mechanics { get; set; }
 
+        public DbSet<Client> Clients { get; set; }
+
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
@@ -40,6 +42,20 @@ namespace IvarsSykkelsjappe.Data
                 .HasOne(x => x.BikeCategory)
                 .WithMany(x => x.Bikes)
                 .HasForeignKey(x => x.BikeCategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Booking>()
+                .HasOne(x => x.Client)
+                .WithMany(x => x.Bookings)
+                .HasForeignKey(x => x.ClientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Client>()
+                .HasOne<IdentityUser>()
+                .WithOne()
+                .HasForeignKey<Client>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

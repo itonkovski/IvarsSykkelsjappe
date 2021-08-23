@@ -4,14 +4,16 @@ using IvarsSykkelsjappe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvarsSykkelsjappe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210820180851_BookingTableAdjusted")]
+    partial class BookingTableAdjusted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +86,6 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Details")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -100,38 +99,16 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
+                    b.Property<int>("PhoneNumber")
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TimeSlot")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
                     b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>
@@ -564,26 +541,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Navigation("BikeCategory");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Booking", b =>
-                {
-                    b.HasOne("IvarsSykkelsjappe.Data.Models.Client", "Client")
-                        .WithMany("Bookings")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithOne()
-                        .HasForeignKey("IvarsSykkelsjappe.Data.Models.Client", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
@@ -711,11 +668,6 @@ namespace IvarsSykkelsjappe.Migrations
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.BikeCategory", b =>
                 {
                     b.Navigation("Bikes");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>

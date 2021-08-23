@@ -33,5 +33,17 @@ namespace IvarsSykkelsjappe.Controllers
             this.bookingService.Add(bookingForm);
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AllBookings(BookingViewModel bookingModel)
+        {
+            var bookings = this.bookingService.GetAllBookings();
+            return View(bookings);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            this.bookingService.Delete(id);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

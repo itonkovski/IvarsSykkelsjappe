@@ -1,4 +1,5 @@
-﻿namespace IvarsSykkelsjappe.Models.Bikes
+﻿using System;
+namespace IvarsSykkelsjappe.Models.Bikes
 {
     public class BikeListingViewModel
     {

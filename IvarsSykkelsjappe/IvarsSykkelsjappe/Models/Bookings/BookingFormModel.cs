@@ -7,8 +7,6 @@ namespace IvarsSykkelsjappe.Models.Bookings
 
     public class BookingFormModel
     {
-        public int Id { get; set; }
-
         [Required]
         [StringLength(
             FullNameMaxLength,
@@ -21,12 +19,11 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string Email { get; set; }
 
         [Required]
-        [Phone]
         [StringLength(PhoneNumberMaxLength)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required]
-        public DateTime TimeSlot { get; set; }
+        public string TimeSlot { get; set; }
 
         [Required]
         [StringLength(
@@ -34,11 +31,6 @@ namespace IvarsSykkelsjappe.Models.Bookings
             MinimumLength = DetailsMinLength,
             ErrorMessage = "The Description is required and should be minimum {2} symbols.")]
         public string Details { get; set; }
-
-        [Required]
-        [Url]
-        [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; }
 
         public bool Agreements { get; set; }
     }

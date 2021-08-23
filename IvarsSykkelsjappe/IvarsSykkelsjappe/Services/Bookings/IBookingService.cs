@@ -1,9 +1,14 @@
-﻿using IvarsSykkelsjappe.Models.Bookings;
+﻿using System.Collections.Generic;
+using IvarsSykkelsjappe.Models.Bookings;
 
 namespace IvarsSykkelsjappe.Services.Bookings
 {
     public interface IBookingService
     {
         void Add(BookingFormModel bike);
+
+        IEnumerable<BookingViewModel> GetAllBookings();
+
+        void Delete(int id);
     }
 }

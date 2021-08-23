@@ -4,14 +4,16 @@ using IvarsSykkelsjappe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvarsSykkelsjappe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210822173114_ClientTableCreated")]
+    partial class ClientTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,8 +86,8 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -108,30 +110,14 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Property<DateTime>("TimeSlot")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>
@@ -416,6 +402,10 @@ namespace IvarsSykkelsjappe.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -467,6 +457,8 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -553,6 +545,22 @@ namespace IvarsSykkelsjappe.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Client");
+                });
+
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Bike", b =>
                 {
                     b.HasOne("IvarsSykkelsjappe.Data.Models.BikeCategory", "BikeCategory")
@@ -568,20 +576,9 @@ namespace IvarsSykkelsjappe.Migrations
                 {
                     b.HasOne("IvarsSykkelsjappe.Data.Models.Client", "Client")
                         .WithMany("Bookings")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithOne()
-                        .HasForeignKey("IvarsSykkelsjappe.Data.Models.Client", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>
@@ -713,11 +710,6 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Navigation("Bikes");
                 });
 
-            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Mechanic", b =>
                 {
                     b.Navigation("Orders");
@@ -743,6 +735,11 @@ namespace IvarsSykkelsjappe.Migrations
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Service", b =>
                 {
                     b.Navigation("ServiceOrders");
+                });
+
+            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Client", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }
