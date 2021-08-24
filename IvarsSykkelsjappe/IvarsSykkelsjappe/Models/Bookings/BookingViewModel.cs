@@ -8,5 +8,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string TimeSlot { get; set; }
 
         public string Details { get; set; }
+
+        public string Username { get; set; }
     }
 }

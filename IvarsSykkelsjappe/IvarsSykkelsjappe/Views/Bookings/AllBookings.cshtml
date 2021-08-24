@@ -12,6 +12,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Time</th>
                         <th scope="col">Details</th>
+                        <th scope="col">User name</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <th scope="row">@booking.Id</th>
                         <td>@booking.TimeSlot</td>
                         <td>@booking.Details</td>
+                        <td>@booking.Username</td>
                         <td>
                             <div class="button-holder">
                                 <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>

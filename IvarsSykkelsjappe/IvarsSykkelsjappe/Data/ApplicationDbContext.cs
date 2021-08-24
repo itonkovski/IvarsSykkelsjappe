@@ -29,8 +29,6 @@ namespace IvarsSykkelsjappe.Data
 
         public DbSet<Mechanic> Mechanics { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
-
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
         public DbSet<ServiceOrder> ServiceOrders { get; set; }
@@ -44,19 +42,19 @@ namespace IvarsSykkelsjappe.Data
                 .HasForeignKey(x => x.BikeCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-                .Entity<Booking>()
-                .HasOne(x => x.Client)
-                .WithMany(x => x.Bookings)
-                .HasForeignKey(x => x.ClientId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .Entity<Booking>()
+            //    .HasOne(x => x.User)
+            //    .WithMany(x => x.Bookings)
+            //    .HasForeignKey(x => x.ClientId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-                .Entity<Client>()
-                .HasOne<IdentityUser>()
-                .WithOne()
-                .HasForeignKey<Client>(x => x.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .Entity<Client>()
+            //    .HasOne<IdentityUser>()
+            //    .WithOne()
+            //    .HasForeignKey<Client>(x => x.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<Product>()
@@ -73,12 +71,12 @@ namespace IvarsSykkelsjappe.Data
                 .Entity<ServiceOrder>()
                 .HasKey(so => new { so.ServiceId, so.OrderId });
 
-            builder
-                .Entity<Mechanic>()
-                .HasOne<IdentityUser>()
-                .WithOne()
-                .HasForeignKey<Mechanic>(x => x.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .Entity<Mechanic>()
+            //    .HasOne<IdentityUser>()
+            //    .WithOne()
+            //    .HasForeignKey<Mechanic>(x => x.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

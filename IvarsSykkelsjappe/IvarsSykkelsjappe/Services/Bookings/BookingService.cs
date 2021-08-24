@@ -17,22 +17,24 @@ namespace IvarsSykkelsjappe.Services.Bookings
             this.dbContext = dbContext;
         }
 
-        public void Add(BookingFormModel booking)
+        public void Add(BookingFormModel booking, string userId)
         {
+
             var bookingData = new Booking
             {
                 FullName = booking.FullName,
                 Email = booking.Email,
                 PhoneNumber = booking.PhoneNumber,
-                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
+                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 Details = booking.Details,
+                UserId = userId
             };
 
             this.dbContext.Bookings.Add(bookingData);
             this.dbContext.SaveChanges();
         }
 
-        public IEnumerable<BookingViewModel> GetAllBookings()
+        public IEnumerable<BookingViewModel> GetAllBookings(string userName)
         {
             var bookings = this.dbContext
                 .Bookings
@@ -40,7 +42,8 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 {
                     Id = x.Id,
                     TimeSlot = x.TimeSlot.ToString(),
-                    Details = x.Details
+                    Details = x.Details,
+                    Username = userName
                 })
                 .OrderByDescending(x => x.TimeSlot)
                 .ToList();
