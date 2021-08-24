@@ -9,6 +9,6 @@ namespace IvarsSykkelsjappe.Models.Bookings
 
         public string Details { get; set; }
 
-        public string Username { get; set; }
+        public string UserId { get; set; }
     }
 }

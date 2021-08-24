@@ -33,5 +33,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string Details { get; set; }
 
         public bool Agreements { get; set; }
+
+        public string UserId { get; set; }
     }
 }

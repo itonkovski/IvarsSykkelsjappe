@@ -34,7 +34,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
             this.dbContext.SaveChanges();
         }
 
-        public IEnumerable<BookingViewModel> GetAllBookings(string userName)
+        public IEnumerable<BookingViewModel> GetAllBookings()
         {
             var bookings = this.dbContext
                 .Bookings
@@ -43,7 +43,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
                     Id = x.Id,
                     TimeSlot = x.TimeSlot.ToString(),
                     Details = x.Details,
-                    Username = userName
+                    UserId = x.UserId
                 })
                 .OrderByDescending(x => x.TimeSlot)
                 .ToList();

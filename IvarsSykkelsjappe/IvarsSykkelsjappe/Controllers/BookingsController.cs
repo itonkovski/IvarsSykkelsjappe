@@ -43,8 +43,7 @@ namespace IvarsSykkelsjappe.Controllers
         [Authorize(Roles = "Admin, Mechanic")]
         public IActionResult AllBookings()
         {
-            var userName = User.FindFirstValue(ClaimTypes.Name);
-            var bookings = this.bookingService.GetAllBookings(userName);
+            var bookings = this.bookingService.GetAllBookings();
             return View(bookings);
         }
 
