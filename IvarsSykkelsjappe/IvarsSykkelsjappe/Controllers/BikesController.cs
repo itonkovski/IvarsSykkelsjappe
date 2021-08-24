@@ -72,7 +72,7 @@ namespace IvarsSykkelsjappe.Controllers
         //    return RedirectToAction(nameof(AllCustomer));
         //}
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin, User, Mechanic")]
         public IActionResult AllCustomer(AllBikesQueryModel queryModel)
         {
             this.bikeService.AllSearch(queryModel);
