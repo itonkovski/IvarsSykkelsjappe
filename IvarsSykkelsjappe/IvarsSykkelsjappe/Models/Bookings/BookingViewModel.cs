@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace IvarsSykkelsjappe.Models.Bookings
 {
     public class BookingViewModel

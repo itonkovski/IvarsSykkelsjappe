@@ -25,9 +25,9 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 FullName = booking.FullName,
                 Email = booking.Email,
                 PhoneNumber = booking.PhoneNumber,
-                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-mm-dd", CultureInfo.InvariantCulture),
                 Details = booking.Details,
-                UserId = userId
+                UserId = userId,
             };
 
             this.dbContext.Bookings.Add(bookingData);

@@ -28,6 +28,9 @@ namespace IvarsSykkelsjappe.Controllers
         [Authorize(Roles = "Admin, User")]
         public IActionResult BookTime(BookingFormModel bookingForm)
         {
+            //if userName is needed
+            //var userName = User.FindFirstValue(ClaimTypes.Name);
+
             //var clientId = this.User.GetId();
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
