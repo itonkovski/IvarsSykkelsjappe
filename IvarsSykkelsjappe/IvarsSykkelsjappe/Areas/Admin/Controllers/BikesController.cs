@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Areas.Admin.Controllers

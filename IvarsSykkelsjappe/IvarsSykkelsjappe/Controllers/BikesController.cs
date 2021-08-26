@@ -25,52 +25,52 @@ namespace IvarsSykkelsjappe.Controllers
         //    return View(bikes);
         //}
 
-        //[Authorize]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult Edit(int id)
-        //{
-        //    if (!User.IsInRole("Admin"))
-        //    {
-        //        return Unauthorized();
-        //    }
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
+        {
+            if (!User.IsInRole("Admin"))
+            {
+                return Unauthorized();
+            }
 
-        //    var bike = this.bikeService.GetEdit(id);
+            var bike = this.bikeService.GetEdit(id);
 
-        //    var bikeForm = this.mapper.Map<BikeFormModel>(bike);
+            var bikeForm = this.mapper.Map<BikeFormModel>(bike);
 
-        //    bikeForm.Categories = this.bikeService.GetBikeCategories();
+            bikeForm.Categories = this.bikeService.GetBikeCategories();
 
-        //    return View(bikeForm);
+            return View(bikeForm);
 
-        //    //without AutoMapper
-        //    //return View(new BikeFormModel
-        //    //{
-        //    //    Brand = bike.Brand,
-        //    //    Model = bike.Model,
-        //    //    Description = bike.Description,
-        //    //    Price = bike.Price,
-        //    //    ImageUrl = bike.ImageUrl,
-        //    //    Year = bike.Year,
-        //    //    BikeCategoryId = bike.BikeCategoryId,
-        //    //    Categories = this.bikeService.GetBikeCategories()
-        //    //});
-        //}
+            //without AutoMapper
+            //return View(new BikeFormModel
+            //{
+            //    Brand = bike.Brand,
+            //    Model = bike.Model,
+            //    Description = bike.Description,
+            //    Price = bike.Price,
+            //    ImageUrl = bike.ImageUrl,
+            //    Year = bike.Year,
+            //    BikeCategoryId = bike.BikeCategoryId,
+            //    Categories = this.bikeService.GetBikeCategories()
+            //});
+        }
 
-        //[Authorize]
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult Edit(BikeFormModel bikeModel ,int id)
-        //{
+        [Authorize]
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(BikeFormModel bikeModel, int id)
+        {
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        bikeModel.Categories = this.bikeService.GetBikeCategories();
-        //        return View(bikeModel);
-        //    }
+            if (!ModelState.IsValid)
+            {
+                bikeModel.Categories = this.bikeService.GetBikeCategories();
+                return View(bikeModel);
+            }
 
-        //    this.bikeService.Edit(bikeModel, id);
-        //    return RedirectToAction(nameof(AllCustomer));
-        //}
+            this.bikeService.Edit(bikeModel, id);
+            return RedirectToAction(nameof(AllCustomer));
+        }
 
         [Authorize(Roles = "Admin, User, Mechanic")]
         public IActionResult AllCustomer(AllBikesQueryModel queryModel)
@@ -105,12 +105,12 @@ namespace IvarsSykkelsjappe.Controllers
         //    return RedirectToAction(nameof(AllCustomer));
         //}
 
-        //[Authorize]
-        //public IActionResult Details(int id)
-        //{
-        //    var bike = this.bikeService.GetDetails(id);
-        //    return View(bike);
-        //}
+        [Authorize]
+        public IActionResult Details(int id)
+        {
+            var bike = this.bikeService.GetDetails(id);
+            return View(bike);
+        }
 
         //[Authorize]
         //[Authorize(Roles = "Admin")]

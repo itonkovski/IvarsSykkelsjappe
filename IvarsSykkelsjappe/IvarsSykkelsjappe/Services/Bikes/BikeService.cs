@@ -67,16 +67,16 @@ namespace IvarsSykkelsjappe.Services.Bikes
             var bikes = bikesQuery
                 .Skip((queryModel.CurrentPage - 1) * AllBikesQueryModel.BikesPerPage)
                 .Take(AllBikesQueryModel.BikesPerPage)
-                .ProjectTo<BikeListingViewModel>(this.mapper.ConfigurationProvider)
-                //.Select(x => new BikeListingViewModel
-                //{
-                //    Id = x.Id,
-                //    Brand = x.Brand,
-                //    Model = x.Model,
-                //    Year = x.Year,
-                //    ImageUrl = x.ImageUrl,
-                //    BikeCategory = x.BikeCategory.Name
-                //})
+                //.ProjectTo<BikeListingViewModel>(this.mapper.ConfigurationProvider)
+                .Select(x => new BikeListingViewModel
+                {
+                    Id = x.Id,
+                    Brand = x.Brand,
+                    Model = x.Model,
+                    Year = x.Year,
+                    ImageUrl = x.ImageUrl,
+                    BikeCategory = x.BikeCategory.Name
+                })
                 .ToList();
 
             var bikeBrands = this.dbContext

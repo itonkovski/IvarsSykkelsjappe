@@ -10,5 +10,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
         IEnumerable<BookingViewModel> GetAllBookings();
 
         void Delete(int id);
+
+        IEnumerable<BookingViewModel> MyBookings(string userId);
     }
 }

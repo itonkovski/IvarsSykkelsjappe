@@ -25,7 +25,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 FullName = booking.FullName,
                 Email = booking.Email,
                 PhoneNumber = booking.PhoneNumber,
-                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-mm-dd", CultureInfo.InvariantCulture),
+                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 Details = booking.Details,
                 UserId = userId,
             };
@@ -56,6 +56,24 @@ namespace IvarsSykkelsjappe.Services.Bookings
             var booking = this.dbContext.Bookings.Find(id);
             this.dbContext.Bookings.Remove(booking);
             this.dbContext.SaveChanges();
+        }
+
+        public IEnumerable<BookingViewModel> MyBookings(string userId)
+        {
+            var bookings = this.dbContext
+                .Bookings
+                .Where(x => x.UserId == userId)
+                .Select(x => new BookingViewModel
+                {
+                    Id = x.Id,
+                    TimeSlot = x.TimeSlot.ToString(),
+                    Details = x.Details,
+                    
+                })
+                .OrderByDescending(x => x.TimeSlot)
+                .ToList();
+
+            return bookings;
         }
     }
 }

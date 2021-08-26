@@ -39,6 +39,15 @@ namespace IvarsSykkelsjappe.Controllers
                 return View(bookingForm);
             }
             this.bookingService.Add(bookingForm, clientId);
+
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction(nameof(AllBookings));
+            }
+            else if (User.IsInRole("User"))
+            {
+                return RedirectToAction(nameof(MyBookings));
+            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -47,6 +56,15 @@ namespace IvarsSykkelsjappe.Controllers
         public IActionResult AllBookings()
         {
             var bookings = this.bookingService.GetAllBookings();
+            return View(bookings);
+        }
+
+        [Authorize]
+        [Authorize(Roles = "User")]
+        public IActionResult MyBookings()
+        {
+            var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var bookings = this.bookingService.MyBookings(clientId);
             return View(bookings);
         }
 
