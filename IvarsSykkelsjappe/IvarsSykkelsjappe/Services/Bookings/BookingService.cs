@@ -25,7 +25,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 FullName = booking.FullName,
                 Email = booking.Email,
                 PhoneNumber = booking.PhoneNumber,
-                TimeSlot = DateTime.ParseExact(booking.TimeSlot, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                TimeSlot = booking.TimeSlot,
                 Details = booking.Details,
                 UserId = userId,
             };
@@ -41,11 +41,11 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 .Select(x => new BookingViewModel
                 {
                     Id = x.Id,
-                    TimeSlot = x.TimeSlot.ToString(),
+                    TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
                     Details = x.Details,
                     UserId = x.UserId
                 })
-                .OrderByDescending(x => x.TimeSlot)
+                .OrderByDescending(x => x.Id)
                 .ToList();
 
             return bookings;
@@ -66,11 +66,11 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 .Select(x => new BookingViewModel
                 {
                     Id = x.Id,
-                    TimeSlot = x.TimeSlot.ToString(),
+                    TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
                     Details = x.Details,
                     
                 })
-                .OrderByDescending(x => x.TimeSlot)
+                .OrderByDescending(x => x.Id)
                 .ToList();
 
             return bookings;

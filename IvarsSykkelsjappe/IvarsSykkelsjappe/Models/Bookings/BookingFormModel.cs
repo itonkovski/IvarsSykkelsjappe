@@ -23,7 +23,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string TimeSlot { get; set; }
+        public DateTime TimeSlot { get; set; }
 
         [Required]
         [StringLength(
