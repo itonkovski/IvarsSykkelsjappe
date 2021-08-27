@@ -19,30 +19,42 @@
                 <tbody align="center">
                     @foreach (var booking in Model)
                     {
-                    <tr align="center">
-                        <th scope="row">@booking.Id</th>
-                        <td>@booking.TimeSlot</td>
-                        <td><a class="btn btn-info text-uppercase">Info</a></td>
-                        <td>@booking.UserId</td>
-                        <td>
-                            <div class="button-holder">
-                                <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>
-                            </div>
-                        </td>
-                        @*<td>
-            <div class="button-holder">
-                <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
-            </div>
-        </td>
-        <td>
-            <div class="button-holder">
-                <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
-            </div>
-        </td>*@
-                    </tr>
+                        <tr align="center">
+                            <th scope="row">@booking.Id</th>
+                            <td>@booking.TimeSlot</td>
+                            @*<td><a class="btn btn-info text-uppercase">Info</a></td>*@
+                            <td>
+                                <div class="container">
+                                    <a class="btn btn-info text-uppercase" data-toggle="popover" title="Details" data-content=@booking.Details>Info</a>
+                                </div>
+                            </td>
+                            <td>@booking.UserId</td>
+                            <td>
+                                <div class="button-holder">
+                                    <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>
+                                </div>
+                            </td>
+                            @*<td>
+                                    <div class="button-holder">
+                                        <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="button-holder">
+                                        <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
+                                    </div>
+                                </td>*@
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });</script>
+}
+
