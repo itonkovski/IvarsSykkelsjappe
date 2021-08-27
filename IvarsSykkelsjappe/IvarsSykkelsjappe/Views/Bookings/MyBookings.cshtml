@@ -21,10 +21,14 @@
                         <tr align="center">
                             <th scope="row">@booking.Id</th>
                             <td>@booking.TimeSlot</td>
-                            <td><a class="btn btn-info text-uppercase">Info</a></td>
+                            <td>
+                                <div class="container">
+                                    <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content=@booking.Details>Info</a>
+                                </div>
+                            </td>
                             <td>
                                 <div class="button-holder">
-                                    <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Check Receipt</a>
+                                    <a class="btn btn-danger text-uppercase">Check Receipt</a>
                                 </div>
                             </td>
                             @*<td>
@@ -44,4 +48,10 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });</script>
+}
 
