@@ -26,6 +26,9 @@
     <None Remove="Areas\Admin\Controllers\" />
     <None Remove="Areas\Admin\Views\" />
     <None Remove="Areas\Admin\Views\Bikes\" />
+    <None Remove="Areas\Mechanic\" />
+    <None Remove="Areas\Mechanic\Controllers\" />
+    <None Remove="Areas\Mechanic\Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -68,6 +71,9 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Admin\Views\Bikes\" />
+    <Folder Include="Areas\Mechanic\" />
+    <Folder Include="Areas\Mechanic\Controllers\" />
+    <Folder Include="Areas\Mechanic\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -98,9 +104,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\css\site.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\images\BannerMockUp.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\images\BlueOkSticker.png">
@@ -161,6 +164,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bookings\MyBookings.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Bookings\MyOrders.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

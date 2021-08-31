@@ -12,5 +12,9 @@ namespace IvarsSykkelsjappe.Services.Bookings
         void Delete(int id);
 
         IEnumerable<BookingViewModel> MyBookings(string userId);
+
+        void TakeMechanic(int id, string mechanicId);
+
+        IEnumerable<BookingViewModel> MyOrders(string mechanicId);
     }
 }

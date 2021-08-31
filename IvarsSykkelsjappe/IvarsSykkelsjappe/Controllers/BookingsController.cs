@@ -75,5 +75,24 @@ namespace IvarsSykkelsjappe.Controllers
             this.bookingService.Delete(id);
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        [Authorize]
+        [Authorize(Roles = "Mechanic")]
+        public IActionResult TakeOrder(int id)
+        {
+            var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            this.bookingService.TakeMechanic(id, mechanicId);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [Authorize(Roles = "Mechanic")]
+        public IActionResult MyOrders()
+        {
+            var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var bookings = this.bookingService.MyOrders(mechanicId);
+            return View(bookings);
+        }
     }
 }

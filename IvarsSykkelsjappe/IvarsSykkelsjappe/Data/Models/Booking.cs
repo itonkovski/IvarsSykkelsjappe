@@ -27,5 +27,7 @@ namespace IvarsSykkelsjappe.Data.Models
         public string Details { get; set; }
 
         public string UserId { get; set; }
+
+        public string MechanicId { get; set; }
     }
 }

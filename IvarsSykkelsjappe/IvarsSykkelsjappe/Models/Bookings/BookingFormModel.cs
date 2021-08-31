@@ -32,10 +32,13 @@ namespace IvarsSykkelsjappe.Models.Bookings
             ErrorMessage = "The Description is required and should be minimum {2} symbols.")]
         public string Details { get; set; }
 
+        [Required]
         public bool Agreements { get; set; }
 
         public string UserId { get; set; }
 
         public string UserName { get; set; }
+
+        public string MechanicId { get; set; }
     }
 }

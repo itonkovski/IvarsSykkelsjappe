@@ -27,7 +27,6 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 Details = booking.Details,
                 UserId = userId,
             };
-
             this.dbContext.Bookings.Add(bookingData);
             this.dbContext.SaveChanges();
         }
@@ -39,6 +38,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 .Select(x => new BookingViewModel
                 {
                     Id = x.Id,
+                    FullName = x.FullName,
                     TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
                     Details = x.Details,
                     UserId = x.UserId
@@ -72,6 +72,32 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 .ToList();
 
             return bookings;
+        }
+
+        public void TakeMechanic(int id, string mechanicId)
+        {
+            var orderData = this.dbContext.Bookings.FirstOrDefault(x => x.Id == id);
+
+            orderData.MechanicId = mechanicId;
+            this.dbContext.SaveChanges();
+        }
+
+        public IEnumerable<BookingViewModel> MyOrders(string mechanicId)
+        {
+            var orders = this.dbContext
+                .Bookings
+                .Where(x => x.MechanicId == mechanicId)
+                .Select(x => new BookingViewModel
+                {
+                    Id = x.Id,
+                    TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
+                    Details = x.Details,
+
+                })
+                .OrderByDescending(x => x.Id)
+                .ToList();
+
+            return orders;
         }
     }
 }
