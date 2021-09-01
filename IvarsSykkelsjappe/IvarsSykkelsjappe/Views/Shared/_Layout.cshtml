@@ -38,13 +38,32 @@
                         }
                         else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-dark" data-toggle="dropdown">Bikes</a>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="All">Admin Bikes</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-dark" data-toggle="dropdown">Bookings</a>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Create Booking</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                            </li>
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Booking</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
-                            </li>
-                            <li class="nav-item">
+                            </li>*@
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
                             </li>
                             <li class="nav-item">
@@ -52,7 +71,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
-                            </li>
+                            </li>*@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="PopUps" asp-action="Location">Pop-Ups</a>
                             </li>
