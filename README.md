@@ -7,9 +7,6 @@
 <a href="https://instagram.com/ivarssykkelsjappe/?hl=en" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="ivarssykkelsjappe/?hl=en" height="30" width="40" /></a>
 </p>
  
- 
- The idea about my project is connected with my friend Ivar Sverrisson bicycle workshop which he is owning in Oslo, Norway.
- I hope one day soon he would be able to use it and implement it into his bussines.
 
 I have registered some test users:
 - testAdmin@gmail.com password: 123456
