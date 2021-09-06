@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IvarsSykkelsjappe.Data.Models
 {
-    using static DataConstants.Service;
+    using static DataConstants.Assistance;
 
     public class Assistance
     {
@@ -19,9 +19,5 @@ namespace IvarsSykkelsjappe.Data.Models
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
-
-        public int AssistanceCategoryId { get; set; }
-
-        public AssistanceCategory AssistanceCategory { get; set; }
     }
 }

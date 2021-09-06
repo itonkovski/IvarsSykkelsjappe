@@ -23,8 +23,6 @@ namespace IvarsSykkelsjappe.Data
 
         public DbSet<Assistance> Assistances { get; set; }
 
-        public DbSet<AssistanceCategory> AssistancesCategories { get; set; }
-
         public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<PopUp> PopUps { get; set; }
@@ -36,13 +34,6 @@ namespace IvarsSykkelsjappe.Data
                 .HasOne(x => x.BikeCategory)
                 .WithMany(x => x.Bikes)
                 .HasForeignKey(x => x.BikeCategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Assistance>()
-                .HasOne(x => x.AssistanceCategory)
-                .WithMany(x => x.Assistances)
-                .HasForeignKey(x => x.AssistanceCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             //builder

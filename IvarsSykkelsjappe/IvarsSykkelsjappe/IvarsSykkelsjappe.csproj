@@ -28,6 +28,10 @@
     <None Remove="Areas\Mechanic\" />
     <None Remove="Areas\Mechanic\Controllers\" />
     <None Remove="Areas\Mechanic\Views\" />
+    <None Remove="Models\Assistances\" />
+    <None Remove="Services\Assistances\" />
+    <None Remove="Views\Assistances\" />
+    <None Remove="Areas\Admin\Views\Assistances\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -72,6 +76,10 @@
     <Folder Include="Areas\Mechanic\" />
     <Folder Include="Areas\Mechanic\Controllers\" />
     <Folder Include="Areas\Mechanic\Views\" />
+    <Folder Include="Models\Assistances\" />
+    <Folder Include="Services\Assistances\" />
+    <Folder Include="Views\Assistances\" />
+    <Folder Include="Areas\Admin\Views\Assistances\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -165,6 +173,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bookings\MyOrders.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Assistances\Create.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\Assistances\Create.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

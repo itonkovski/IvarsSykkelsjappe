@@ -34,9 +34,12 @@
             public const string ProductNumberRegularExpression = @"[A-Z]{2}[0-9]{6}";
         }
 
-        public class Service
+        public class Assistance
         {
+            public const int NameMinLength = 6;
             public const int NameMaxLength = 20;
+
+            public const int DescriptionMinLength = 10;
         }
 
         public class Booking
