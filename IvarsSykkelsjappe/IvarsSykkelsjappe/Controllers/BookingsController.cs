@@ -83,7 +83,7 @@ namespace IvarsSykkelsjappe.Controllers
         {
             var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             this.bookingService.TakeMechanic(id, mechanicId);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(MyOrders));
         }
 
         [Authorize]

@@ -14,7 +14,6 @@
     <None Remove="Data\Models\" />
     <None Remove="Infrastructure\" />
     <None Remove="Infrastructure\Extentions\" />
-    <None Remove="Data\Models\Enums\" />
     <None Remove="Services\Bikes\" />
     <None Remove="Views\Bikes\" />
     <None Remove="Models\Bookings\" />
@@ -60,7 +59,6 @@
     <Folder Include="Data\Models\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Infrastructure\Extensions\" />
-    <Folder Include="Data\Models\Enums\" />
     <Folder Include="Services\Bikes\" />
     <Folder Include="Views\Bikes\" />
     <Folder Include="Models\Bookings\" />

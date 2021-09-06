@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IvarsSykkelsjappe.Data.Models
@@ -29,5 +30,7 @@ namespace IvarsSykkelsjappe.Data.Models
         public string UserId { get; set; }
 
         public string MechanicId { get; set; }
+
+        public ICollection<Assistance> Assistances { get; set; }
     }
 }
