@@ -28,7 +28,13 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             }
 
             this.assistanceService.Add(assistanceForm);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(AllAssistances));
+        }
+
+        public IActionResult AllAssistances()
+        {
+            var assistances = this.assistanceService.GetAll();
+            return View(assistances);
         }
     }
 }

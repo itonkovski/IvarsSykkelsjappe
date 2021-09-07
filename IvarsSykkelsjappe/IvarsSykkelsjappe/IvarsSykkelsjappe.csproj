@@ -175,10 +175,10 @@
     <Content Update="Views\Bookings\MyOrders.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Views\Assistances\Create.cshtml">
+    <Content Update="Areas\Admin\Views\Assistances\Create.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="Areas\Admin\Views\Assistances\Create.cshtml">
+    <Content Update="Areas\Admin\Views\Assistances\AllAssistances.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

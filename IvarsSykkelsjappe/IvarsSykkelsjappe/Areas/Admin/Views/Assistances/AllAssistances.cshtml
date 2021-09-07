@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AssistanceViewModel>
+@{
+    ViewData["Title"] = "All services";
+}
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Services</h1>
+        <div style="padding: 5%;">
+            <table class="table">
+                <thead class="thead-dark" align="center">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody align="center">
+                    @foreach (var assistance in Model)
+                    {
+                        <tr align="center">
+                            <th scope="row">@assistance.Name</th>
+                            <td>@assistance.Price</td>
+                            @*<td><a class="btn btn-info text-uppercase">Info</a></td>*@
+                            <td>
+                                <div class="container">
+                                    <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content=@assistance.Description>Info</a>
+                                </div>
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="button-holder">
+                                        <a asp-area="Admin" asp-controller="Assistances" asp-action="Delete" asp-route-id="@assistance.Id" class="btn btn-danger text-uppercase">Delete</a>
+                                    </div>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });</script>
+}
+

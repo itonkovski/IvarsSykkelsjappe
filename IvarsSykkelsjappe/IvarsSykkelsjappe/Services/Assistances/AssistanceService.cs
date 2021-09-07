@@ -28,5 +28,21 @@ namespace IvarsSykkelsjappe.Services.Assistances
             this.dbContext.Assistances.Add(assistanceData);
             this.dbContext.SaveChanges();
         }
+
+        public IEnumerable<AssistanceViewModel> GetAll()
+        {
+            var assistances = this.dbContext
+                .Assistances
+                .Select(x => new AssistanceViewModel
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    Price = x.Price
+                })
+                .OrderByDescending(x => x.Name)
+                .ToList();
+
+            return assistances;
+        }
     }
 }
