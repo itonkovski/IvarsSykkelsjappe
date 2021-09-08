@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Areas.Admin.Controllers
 {
+    using static WebConstants;
+
     public class AssistancesController : AdminController
     {
         private readonly IAssistanceService assistanceService;
@@ -28,6 +30,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             }
 
             this.assistanceService.Add(assistanceForm);
+            TempData[GlobalMessageKey] = "The service was added successfully.";
             return RedirectToAction(nameof(AllAssistances));
         }
 
@@ -40,6 +43,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             this.assistanceService.Delete(id);
+            TempData[GlobalMessageKey] = "The service was deleted successfully.";
             return RedirectToAction(nameof(AllAssistances));
         }
     }

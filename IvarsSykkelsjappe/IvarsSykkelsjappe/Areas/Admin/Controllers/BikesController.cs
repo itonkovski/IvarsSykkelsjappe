@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Areas.Admin.Controllers
 {
+    using static WebConstants;
+
     public class BikesController : AdminController
     {
         private readonly IBikeService bikeService;
@@ -68,6 +70,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             }
 
             this.bikeService.Edit(bikeModel, id);
+            TempData[GlobalMessageKey] = "The bike was edited successfully.";
             return RedirectToAction(nameof(All));
         }
 
@@ -89,6 +92,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             }
 
             this.bikeService.Add(bikeForm);
+            TempData[GlobalMessageKey] = "The bike was added successfully.";
             return RedirectToAction(nameof(All));
         }
 
@@ -101,6 +105,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         public IActionResult Delete(int id)
         {
             this.bikeService.Delete(id);
+            TempData[GlobalMessageKey] = "The bike was deleted successfully.";
             return RedirectToAction(nameof(All));
         }
     }

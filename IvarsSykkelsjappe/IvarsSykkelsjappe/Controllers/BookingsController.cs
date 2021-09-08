@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Controllers
 {
+    using static WebConstants;
+
     public class BookingsController : Controller
     {
         private readonly IBookingService bookingService;
@@ -39,6 +41,7 @@ namespace IvarsSykkelsjappe.Controllers
                 return View(bookingForm);
             }
             this.bookingService.Add(bookingForm, clientId);
+            TempData[GlobalMessageKey] = "The booking was added successfully.";
 
             if (User.IsInRole("Admin"))
             {
@@ -73,6 +76,7 @@ namespace IvarsSykkelsjappe.Controllers
         public IActionResult Delete(int id)
         {
             this.bookingService.Delete(id);
+            TempData[GlobalMessageKey] = "The booking was deleted successfully.";
             return RedirectToAction("Index", "Home");
         }
 
@@ -83,6 +87,7 @@ namespace IvarsSykkelsjappe.Controllers
         {
             var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             this.bookingService.TakeMechanic(id, mechanicId);
+            TempData[GlobalMessageKey] = "The order is yours now.";
             return RedirectToAction(nameof(MyOrders));
         }
 

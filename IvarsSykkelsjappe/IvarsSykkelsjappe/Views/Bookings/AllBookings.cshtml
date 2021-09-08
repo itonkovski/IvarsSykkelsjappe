@@ -13,7 +13,14 @@
                         <th scope="col">Time</th>
                         <th scope="col">Details</th>
                         <th scope="col">User Id</th>
-                        <th scope="col">Delete</th>
+                        @if (User.IsInRole("Mechanic"))
+                        {
+                            <th scope="col">Take Order</th>
+                        }
+                        else
+                        {
+                            <th scope="col">Delete</th>
+                        }
                     </tr>
                 </thead>
                 <tbody align="center">
@@ -22,10 +29,9 @@
                         <tr align="center">
                             <th scope="row">@booking.FullName</th>
                             <td>@booking.TimeSlot</td>
-                            @*<td><a class="btn btn-info text-uppercase">Info</a></td>*@
                             <td>
                                 <div class="container">
-                                    <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content=@booking.Details>Info</a>
+                                    <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content="@booking.Details">Info</a>
                                 </div>
                             </td>
                             <td>@booking.UserId</td>
@@ -39,11 +45,8 @@
                                 else if (User.IsInRole("Mechanic"))
                                 {
                             <div class="button-holder">
-                                @*<form action="" method="post">
-            <a asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" class="btn btn-warning text-uppercase">Take Order</a>
-        </form>*@
                                 <form action="" method="post">
-                                    <button asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" name="takeOrder" value="takeOrder">Take Order</button>
+                                    <button asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" class="btn btn-warning text-uppercase">Choose</button>
                                 </form>
                             </div>
                                 }
