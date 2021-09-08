@@ -24,10 +24,5 @@ namespace IvarsSykkelsjappe.Models.Assistances
 
         [Required]
         public decimal Price { get; set; }
-
-        [Display(Name = "Category")]
-        public int AssistanceCategoryId { get; set; }
-
-        public IEnumerable<AssistanceCategoryViewModel> Categories { get; set; }
     }
 }

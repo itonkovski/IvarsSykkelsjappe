@@ -36,5 +36,11 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             var assistances = this.assistanceService.GetAll();
             return View(assistances);
         }
+
+        public IActionResult Delete(int id)
+        {
+            this.assistanceService.Delete(id);
+            return RedirectToAction(nameof(AllAssistances));
+        }
     }
 }

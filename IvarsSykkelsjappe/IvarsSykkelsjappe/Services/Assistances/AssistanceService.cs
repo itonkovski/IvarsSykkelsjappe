@@ -29,12 +29,20 @@ namespace IvarsSykkelsjappe.Services.Assistances
             this.dbContext.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            var assistance = this.dbContext.Assistances.Find(id);
+            this.dbContext.Assistances.Remove(assistance);
+            this.dbContext.SaveChanges();
+        }
+
         public IEnumerable<AssistanceViewModel> GetAll()
         {
             var assistances = this.dbContext
                 .Assistances
                 .Select(x => new AssistanceViewModel
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     Description = x.Description,
                     Price = x.Price

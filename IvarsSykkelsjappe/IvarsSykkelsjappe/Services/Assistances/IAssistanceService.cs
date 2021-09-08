@@ -8,5 +8,7 @@ namespace IvarsSykkelsjappe.Services.Assistances
         void Add(AssistanceFormModel assistance);
 
         IEnumerable<AssistanceViewModel> GetAll();
+
+        void Delete(int id);
     }
 }
