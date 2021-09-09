@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace IvarsSykkelsjappe.Models.Bookings
+﻿namespace IvarsSykkelsjappe.Models.Bookings
 {
     public class BookingViewModel
     {
@@ -14,5 +11,9 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string Details { get; set; }
 
         public string UserId { get; set; }
+
+        public string MechanicId { get; set; }
+
+        public bool IsTaken { get; set; }
     }
 }

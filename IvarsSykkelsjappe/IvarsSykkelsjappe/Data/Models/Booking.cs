@@ -31,6 +31,8 @@ namespace IvarsSykkelsjappe.Data.Models
 
         public string MechanicId { get; set; }
 
+        public bool IsTaken { get; set; }
+
         public ICollection<Assistance> Assistances { get; set; }
     }
 }

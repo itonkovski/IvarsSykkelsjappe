@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using IvarsSykkelsjappe.Infrastructure.Extensions;
 using IvarsSykkelsjappe.Models.Bookings;
 using IvarsSykkelsjappe.Services.Bookings;
 using Microsoft.AspNetCore.Authorization;

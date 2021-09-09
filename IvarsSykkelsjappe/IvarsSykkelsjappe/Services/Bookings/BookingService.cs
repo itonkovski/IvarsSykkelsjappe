@@ -35,13 +35,15 @@ namespace IvarsSykkelsjappe.Services.Bookings
         {
             var bookings = this.dbContext
                 .Bookings
+                //.Where(x => x.IsTaken == false)
                 .Select(x => new BookingViewModel
                 {
                     Id = x.Id,
                     FullName = x.FullName,
                     TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
                     Details = x.Details,
-                    UserId = x.UserId
+                    UserId = x.UserId,
+                    MechanicId = x.MechanicId
                 })
                 .OrderByDescending(x => x.Id)
                 .ToList();
@@ -79,6 +81,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
             var orderData = this.dbContext.Bookings.FirstOrDefault(x => x.Id == id);
 
             orderData.MechanicId = mechanicId;
+            orderData.IsTaken = true;
             this.dbContext.SaveChanges();
         }
 
