@@ -53,7 +53,7 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-divider"></div>
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Create Booking</a>
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
                                     <div class="dropdown-divider"></div>
                                 </div>
                             </li>
@@ -88,7 +88,7 @@
                         else if (User.Identity.IsAuthenticated && User.IsInRole("Mechanic"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookingsForToday">All Bookings</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="MyOrders">My Orders</a>

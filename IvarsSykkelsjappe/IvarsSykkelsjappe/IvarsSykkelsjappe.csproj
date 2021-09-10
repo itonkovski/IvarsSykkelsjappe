@@ -32,6 +32,7 @@
     <None Remove="Services\Assistances\" />
     <None Remove="Views\Assistances\" />
     <None Remove="Areas\Admin\Views\Assistances\" />
+    <None Remove="Areas\Admin\Views\Bookings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -80,6 +81,7 @@
     <Folder Include="Services\Assistances\" />
     <Folder Include="Views\Assistances\" />
     <Folder Include="Areas\Admin\Views\Assistances\" />
+    <Folder Include="Areas\Admin\Views\Bookings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -179,6 +181,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Areas\Admin\Views\Assistances\AllAssistances.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\Bookings\AllBookings.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

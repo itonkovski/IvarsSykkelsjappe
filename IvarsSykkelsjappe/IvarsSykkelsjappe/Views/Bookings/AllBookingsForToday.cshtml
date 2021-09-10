@@ -1,0 +1,78 @@
+﻿@model IEnumerable<BookingViewModel>
+@{
+    ViewData["Title"] = "All available bookings for today:";
+}
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">All available bookings for today</h1>
+        <div style="padding: 5%;">
+            <table class="table">
+                <thead class="thead-dark" align="center">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Mechanic Id</th>
+                        @if (User.IsInRole("Mechanic"))
+                        {
+                            <th scope="col">Take Order</th>
+                        }
+                        else
+                        {
+                            <th scope="col">Delete</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody align="center">
+                    @foreach (var booking in Model)
+                    {
+                        <tr align="center">
+                            <th scope="row">@booking.FullName</th>
+                            <td>@booking.TimeSlot</td>
+                            <td>
+                                <div class="container">
+                                    <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content="@booking.Details">Info</a>
+                                </div>
+                            </td>
+                            <td>@booking.MechanicId</td>
+                            <td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="button-holder">
+                                        <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>
+                                    </div>
+                                }
+                                else if (User.IsInRole("Mechanic"))
+                                {
+                                    <div class="button-holder">
+                                        <form action="" method="post">
+                                            <button asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" class="btn btn-warning text-uppercase">Choose</button>
+                                        </form>
+                                    </div>
+                                }
+
+                            </td>
+                            @*<td>
+                                    <div class="button-holder">
+                                        <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="button-holder">
+                                        <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
+                                    </div>
+                                </td>*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });</script>
+}
+

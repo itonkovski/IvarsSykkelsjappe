@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
@@ -101,6 +102,28 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 .ToList();
 
             return orders;
+        }
+
+        public IEnumerable<BookingViewModel> GetAllBookingsForToday()
+        {
+            var currentDate = DateTime.UtcNow.Date;
+
+            var bookings = this.dbContext
+                .Bookings
+                .Where(x => x.IsTaken == false && x.TimeSlot.Date == currentDate)
+                .Select(x => new BookingViewModel
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
+                    Details = x.Details,
+                    UserId = x.UserId,
+                    MechanicId = x.MechanicId
+                })
+                .OrderByDescending(x => x.Id)
+                .ToList();
+
+            return bookings;
         }
     }
 }

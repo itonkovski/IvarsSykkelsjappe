@@ -44,7 +44,8 @@ namespace IvarsSykkelsjappe.Controllers
 
             if (User.IsInRole("Admin"))
             {
-                return RedirectToAction(nameof(AllBookings));
+                return RedirectToAction("AllBookings", "Bookings", new { area = "Admin" });
+
             }
             else if (User.IsInRole("User"))
             {
@@ -54,10 +55,10 @@ namespace IvarsSykkelsjappe.Controllers
         }
 
         [Authorize]
-        [Authorize(Roles = "Admin, Mechanic")]
-        public IActionResult AllBookings()
+        [Authorize(Roles = "Mechanic")]
+        public IActionResult AllBookingsForToday()
         {
-            var bookings = this.bookingService.GetAllBookings();
+            var bookings = this.bookingService.GetAllBookingsForToday();
             return View(bookings);
         }
 
@@ -70,14 +71,7 @@ namespace IvarsSykkelsjappe.Controllers
             return View(bookings);
         }
 
-        [Authorize]
-        [Authorize(Roles = "Admin")]
-        public IActionResult Delete(int id)
-        {
-            this.bookingService.Delete(id);
-            TempData[GlobalMessageKey] = "The booking was deleted successfully.";
-            return RedirectToAction("Index", "Home");
-        }
+        
 
         [HttpPost]
         [Authorize]
