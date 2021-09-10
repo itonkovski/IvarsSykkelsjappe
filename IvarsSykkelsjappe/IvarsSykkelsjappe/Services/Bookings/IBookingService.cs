@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Bookings;
 
 namespace IvarsSykkelsjappe.Services.Bookings
@@ -15,7 +16,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
 
         IEnumerable<BookingViewModel> MyBookings(string userId);
 
-        void TakeMechanic(int id, string mechanicId);
+        void TakeMechanic(int id, string mechanicId, string mechanicName);
 
         IEnumerable<BookingViewModel> MyOrders(string mechanicId);
     }

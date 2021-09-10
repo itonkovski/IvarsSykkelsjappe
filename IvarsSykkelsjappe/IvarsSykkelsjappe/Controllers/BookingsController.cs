@@ -79,7 +79,8 @@ namespace IvarsSykkelsjappe.Controllers
         public IActionResult TakeOrder(int id)
         {
             var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            this.bookingService.TakeMechanic(id, mechanicId);
+            var mechanicName = User.FindFirstValue(ClaimTypes.Name);
+            this.bookingService.TakeMechanic(id, mechanicId, mechanicName);
             TempData[GlobalMessageKey] = "The order is yours now.";
             return RedirectToAction(nameof(MyOrders));
         }

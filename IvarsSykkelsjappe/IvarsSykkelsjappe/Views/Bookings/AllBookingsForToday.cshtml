@@ -9,10 +9,10 @@
             <table class="table">
                 <thead class="thead-dark" align="center">
                     <tr>
-                        <th scope="col">Name</th>
+                        <th scope="col">Client Name</th>
                         <th scope="col">Time</th>
                         <th scope="col">Details</th>
-                        <th scope="col">Mechanic Id</th>
+                        <th scope="col">Mechanic Name</th>
                         @if (User.IsInRole("Mechanic"))
                         {
                             <th scope="col">Take Order</th>
@@ -34,7 +34,7 @@
                                     <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content="@booking.Details">Info</a>
                                 </div>
                             </td>
-                            <td>@booking.MechanicId</td>
+                            <td>@booking.MechanicName</td>
                             <td>
                                 @if (User.IsInRole("Admin"))
                                 {

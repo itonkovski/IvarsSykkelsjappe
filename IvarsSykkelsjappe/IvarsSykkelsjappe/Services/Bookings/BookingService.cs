@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bookings;
+using Microsoft.AspNetCore.Identity;
 
 namespace IvarsSykkelsjappe.Services.Bookings
 {
     public class BookingService : IBookingService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public BookingService(ApplicationDbContext dbContext)
+        public BookingService(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public void Add(BookingFormModel booking, string userId)
@@ -34,9 +38,8 @@ namespace IvarsSykkelsjappe.Services.Bookings
 
         public IEnumerable<BookingViewModel> GetAllBookings()
         {
-            var bookings = this.dbContext
+                var bookings = this.dbContext
                 .Bookings
-                //.Where(x => x.IsTaken == false)
                 .Select(x => new BookingViewModel
                 {
                     Id = x.Id,
@@ -44,7 +47,8 @@ namespace IvarsSykkelsjappe.Services.Bookings
                     TimeSlot = x.TimeSlot.ToString("yyyy-MM-dd HH:mm"),
                     Details = x.Details,
                     UserId = x.UserId,
-                    MechanicId = x.MechanicId
+                    MechanicId = x.MechanicId,
+                    MechanicName = x.MechanicName
                 })
                 .OrderByDescending(x => x.Id)
                 .ToList();
@@ -77,11 +81,12 @@ namespace IvarsSykkelsjappe.Services.Bookings
             return bookings;
         }
 
-        public void TakeMechanic(int id, string mechanicId)
+        public void TakeMechanic(int id, string mechanicId, string mechanicName)
         {
             var orderData = this.dbContext.Bookings.FirstOrDefault(x => x.Id == id);
 
             orderData.MechanicId = mechanicId;
+            orderData.MechanicName = mechanicName;
             orderData.IsTaken = true;
             this.dbContext.SaveChanges();
         }
@@ -119,11 +124,14 @@ namespace IvarsSykkelsjappe.Services.Bookings
                     Details = x.Details,
                     UserId = x.UserId,
                     MechanicId = x.MechanicId
+                    
                 })
                 .OrderByDescending(x => x.Id)
                 .ToList();
 
             return bookings;
         }
+
+
     }
 }

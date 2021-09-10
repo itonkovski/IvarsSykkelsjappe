@@ -14,6 +14,8 @@
 
         public string MechanicId { get; set; }
 
+        public string MechanicName { get; set; }
+
         public bool IsTaken { get; set; }
     }
 }
