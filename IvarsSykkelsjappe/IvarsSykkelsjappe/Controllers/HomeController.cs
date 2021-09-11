@@ -18,7 +18,7 @@ namespace IvarsSykkelsjappe.Controllers
             _logger = logger;
             this.bikeService = bikeService;
         }
-
+        
         public IActionResult Index()
         {
             var bikes = this.bikeService
