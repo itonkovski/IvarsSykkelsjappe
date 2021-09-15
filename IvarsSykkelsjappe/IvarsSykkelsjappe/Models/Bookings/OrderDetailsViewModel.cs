@@ -31,5 +31,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public IEnumerable<OrderAssistanceViewModel> Assistances { get; set; }
 
         public string MechanicDetails { get; set; }
+
+        public string PickUpTime { get; set; }
     }
 }

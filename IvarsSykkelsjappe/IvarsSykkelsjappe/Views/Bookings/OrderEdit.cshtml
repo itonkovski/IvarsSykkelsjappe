@@ -27,20 +27,30 @@
                 <span asp-validation-for="TimeSlot" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Details"></label>
+                <label asp-for="Details">Customers details</label>
                 <textarea asp-for="Details" class="form-control" rows="5" readonly></textarea>
                 <span asp-validation-for="Details" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AssistanceId">Select category</label>
+                <label asp-for="AssistanceId">Applied service</label>
                 <select asp-for="AssistanceId" class="form-control">
                     <option value="">All</option>
-                    @foreach (var category in Model.Assistances)
+                    @foreach (var service in Model.Assistances)
                     {
-                        <option value="@category.AssistanceId">@category.Name</option>
+                        <option value="@service.AssistanceId">@service.Name => @service.Price</option>
                     }
                 </select>
                 <span asp-validation-for="AssistanceId" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MechanicDetails">Mechanics applied services explanation</label>
+                <textarea asp-for="MechanicDetails" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="MechanicDetails" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PickUpTime">Ready to pick up</label>
+                <input asp-for="PickUpTime" type="datetime-local" class="form-control" required placeholder="@DateTime.UtcNow">
+                <span asp-validation-for="PickUpTime" class="small text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>
         </form>
