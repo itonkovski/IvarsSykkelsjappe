@@ -93,5 +93,22 @@ namespace IvarsSykkelsjappe.Controllers
             var bookings = this.bookingService.MyOrders(mechanicId);
             return View(bookings);
         }
+
+
+        public IActionResult OrderEdit(int id)
+        {
+            var order = this.bookingService.GetByMechanic(id);
+
+            return View(new OrderDetailsViewModel
+            {
+                FullName = order.FullName,
+                Email = order.Email,
+                PhoneNumber = order.PhoneNumber,
+                Details = order.Details,
+                TimeSlot = order.TimeSlot,
+                AssistanceId = order.AssistanceId,
+                Assistances = this.bookingService.GetAssistances()
+            });
+        }
     }
 }

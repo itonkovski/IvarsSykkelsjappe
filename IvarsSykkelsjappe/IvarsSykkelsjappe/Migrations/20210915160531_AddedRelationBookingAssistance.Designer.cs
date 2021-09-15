@@ -4,14 +4,16 @@ using IvarsSykkelsjappe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvarsSykkelsjappe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210915160531_AddedRelationBookingAssistance")]
+    partial class AddedRelationBookingAssistance
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,6 +110,9 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AssistanceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Details")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -142,6 +147,8 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssistanceId");
 
                     b.ToTable("Bookings");
                 });
@@ -451,6 +458,17 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Navigation("BikeCategory");
                 });
 
+            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Booking", b =>
+                {
+                    b.HasOne("IvarsSykkelsjappe.Data.Models.Assistance", "Assistance")
+                        .WithMany("Bookings")
+                        .HasForeignKey("AssistanceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Assistance");
+                });
+
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Product", b =>
                 {
                     b.HasOne("IvarsSykkelsjappe.Data.Models.ProductCategory", "ProductCategory")
@@ -511,6 +529,11 @@ namespace IvarsSykkelsjappe.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Assistance", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.BikeCategory", b =>

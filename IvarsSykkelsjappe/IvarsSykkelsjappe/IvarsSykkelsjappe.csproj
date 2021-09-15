@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <Content Remove="Models\launchSettings.json" />
+    <Content Remove="wwwroot\images\.BannerMockUp.jpeg.pdf.icloud" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -184,6 +185,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Areas\Admin\Views\Bookings\AllBookings.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Bookings\OrderEdit.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

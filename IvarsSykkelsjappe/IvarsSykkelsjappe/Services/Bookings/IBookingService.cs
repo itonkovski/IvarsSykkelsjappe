@@ -19,5 +19,9 @@ namespace IvarsSykkelsjappe.Services.Bookings
         void TakeMechanic(int id, string mechanicId, string mechanicName);
 
         IEnumerable<BookingViewModel> MyOrders(string mechanicId);
+
+        OrderDetailsViewModel GetByMechanic(int id);
+
+        IEnumerable<OrderAssistanceViewModel> GetAssistances();
     }
 }

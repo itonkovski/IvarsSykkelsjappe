@@ -38,6 +38,13 @@ namespace IvarsSykkelsjappe.Data
 
             //builder
             //    .Entity<Booking>()
+            //    .HasOne(x => x.Assistance)
+            //    .WithMany(x => x.Bookings)
+            //    .HasForeignKey(x => x.AssistanceId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+            //builder
+            //    .Entity<Booking>()
             //    .HasOne(x => x.User)
             //    .WithMany(x => x.Bookings)
             //    .HasForeignKey(x => x.ClientId)

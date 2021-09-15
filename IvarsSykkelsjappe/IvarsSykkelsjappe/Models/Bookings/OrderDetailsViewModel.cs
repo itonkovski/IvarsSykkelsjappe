@@ -1,30 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using IvarsSykkelsjappe.Data.Models;
 
-namespace IvarsSykkelsjappe.Data.Models
+namespace IvarsSykkelsjappe.Models.Bookings
 {
-    using static DataConstants.Booking;
-
-    public class Booking
+    public class OrderDetailsViewModel
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(FullNameMaxLength)]
         public string FullName { get; set; }
-
-        [Required]
-        [EmailAddress]
+        
         public string Email { get; set; }
 
-        [Required]
-        [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
         public DateTime TimeSlot { get; set; }
 
-        [Required]
         public string Details { get; set; }
 
         public string UserId { get; set; }
@@ -34,5 +25,11 @@ namespace IvarsSykkelsjappe.Data.Models
         public string MechanicName { get; set; }
 
         public bool IsTaken { get; set; }
+
+        public int AssistanceId { get; set; }
+
+        public IEnumerable<OrderAssistanceViewModel> Assistances { get; set; }
+
+        public string MechanicDetails { get; set; }
     }
 }

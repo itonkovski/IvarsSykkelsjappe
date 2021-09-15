@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bookings;
@@ -12,12 +11,10 @@ namespace IvarsSykkelsjappe.Services.Bookings
     public class BookingService : IBookingService
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly UserManager<IdentityUser> userManager;
 
-        public BookingService(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
+        public BookingService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.userManager = userManager;
         }
 
         public void Add(BookingFormModel booking, string userId)
@@ -132,6 +129,33 @@ namespace IvarsSykkelsjappe.Services.Bookings
             return bookings;
         }
 
+        public IEnumerable<OrderAssistanceViewModel> GetAssistances()
+         => this.dbContext
+            .Assistances
+            .Select(x => new OrderAssistanceViewModel
+            {
+                AssistanceId = x.Id,
+                Name = x.Name,
+                Price = x.Price
+            })
+            .ToList();
 
+        public OrderDetailsViewModel GetByMechanic(int id)
+        {
+            var order = this.dbContext
+                .Bookings
+                .Where(x => x.Id == id)
+                .Select(x => new OrderDetailsViewModel
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    Email = x.Email,
+                    PhoneNumber = x.PhoneNumber,
+                    TimeSlot = x.TimeSlot,
+                    Details = x.Details
+                })
+                .FirstOrDefault();
+            return order;
+        }
     }
 }
