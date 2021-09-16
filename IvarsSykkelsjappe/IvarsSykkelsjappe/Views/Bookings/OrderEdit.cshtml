@@ -7,30 +7,42 @@
         <h2 class="heading-margin text-center">Services done by the Mechanic</h2>
         <form method="post">
             <div class="form-group">
-                <label asp-for="FullName"></label>
-                <input asp-for="FullName" class="form-control" readonly>
-                <span asp-validation-for="FullName" class="small text-danger"></span>
+                <p>
+                    <a class="btn btn-info btn-block text-uppercase" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Customer details
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <div class="form-group">
+                            <label asp-for="FullName"></label>
+                            <input asp-for="FullName" class="form-control" readonly>
+                            <span asp-validation-for="FullName" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" readonly>
+                            <span asp-validation-for="Email" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber"></label>
+                            <textarea asp-for="PhoneNumber" class="form-control" readonly></textarea>
+                            <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TimeSlot"></label>
+                            <input asp-for="TimeSlot" class="form-control" readonly>
+                            <span asp-validation-for="TimeSlot" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Details">Customers details</label>
+                            <textarea asp-for="Details" class="form-control" rows="5" readonly></textarea>
+                            <span asp-validation-for="Details" class="small text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" readonly>
-                <span asp-validation-for="Email" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <textarea asp-for="PhoneNumber" class="form-control" readonly></textarea>
-                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TimeSlot"></label>
-                <input asp-for="TimeSlot" class="form-control" readonly>
-                <span asp-validation-for="TimeSlot" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Details">Customers details</label>
-                <textarea asp-for="Details" class="form-control" rows="5" readonly></textarea>
-                <span asp-validation-for="Details" class="small text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="AssistanceId">Applied service</label>
                 <select asp-for="AssistanceId" class="form-control">
