@@ -23,6 +23,8 @@ namespace IvarsSykkelsjappe.Models.Assistances
         public string Description { get; set; }
 
         [Required]
+        //If I need to put a price validation
+        //[Range(typeof(decimal), DataValidation.ProductMinPrice, DataValidation.ProductMaxPrice)]
         public decimal Price { get; set; }
     }
 }

@@ -32,6 +32,8 @@
             public const int DescriptionMinLength = 10;
 
             public const string ProductNumberRegularExpression = @"[A-Z]{2}[0-9]{6}";
+
+            public const int DefaultProductQuantity = 0;
         }
 
         public class Assistance
