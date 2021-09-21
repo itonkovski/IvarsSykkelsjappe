@@ -37,5 +37,11 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             TempData[GlobalMessageKey] = "The product was added successfully.";
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AllProducts()
+        {
+            var products = this.productService.GetAll();
+            return View(products);
+        }
     }
 }

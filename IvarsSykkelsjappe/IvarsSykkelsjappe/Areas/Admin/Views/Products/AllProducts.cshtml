@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "All parts";
+}
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">All parts</h1>
+        <div style="padding: 5%;">
+            <table class="table">
+                <thead class="thead-dark" align="center">
+                    <tr>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody align="center">
+                    @foreach (var product in Model)
+                    {
+                    <tr align="center">
+                        <th scope="row">@product.Brand</th>
+                        <td>@product.Model</td>
+                        <td>
+                            <div class="container">
+                                <a class="btn btn-info text-uppercase" href="#" title="Details" data-toggle="popover" data-trigger="focus" data-content="@product.Description">Info</a>
+                            </div>
+
+                        </td>
+                        <td>@product.Price</td>
+                        <td>@product.Quantity</td>
+                        @*<td>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <div class="button-holder">
+                                    <a asp-area="Admin" asp-controller="Assistances" asp-action="Delete" asp-route-id="@assistance.Id" class="btn btn-danger text-uppercase"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </div>
+                            }
+
+                        </td>*@
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>$(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });</script>
+}
+

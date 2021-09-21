@@ -9,5 +9,7 @@ namespace IvarsSykkelsjappe.Services.Products
         void Add(ProductFormModel product);
 
         IEnumerable<ProductCategoryViewModel> GetProductCategories();
+
+        IEnumerable<ProductViewModel> GetAll();
     }
 }
