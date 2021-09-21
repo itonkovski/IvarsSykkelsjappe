@@ -25,7 +25,7 @@ namespace IvarsSykkelsjappe.Services.Products
                 Price = product.Price,
                 ProductNumber = product.ProductNumber,
                 Description = product.Description,
-                Quantity = DataConstants.Product.DefaultProductQuantity,
+                Quantity = product.Quantity,
                 ImageUrl = product.ImageUrl,
                 ProductCategoryId = product.ProductCategoryId
             };
@@ -41,13 +41,14 @@ namespace IvarsSykkelsjappe.Services.Products
                 .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
+                    ProductCategory = x.ProductCategory.Name,
                     Brand = x.Brand,
                     Model = x.Model,
                     Description = x.Description,
                     Price = x.Price,
                     Quantity = x.Quantity
                 })
-                .OrderByDescending(x => x.Brand)
+                .OrderByDescending(x => x.ProductCategory)
                 .ToList();
 
             return products;

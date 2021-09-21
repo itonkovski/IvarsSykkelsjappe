@@ -5,6 +5,8 @@ namespace IvarsSykkelsjappe.Models.Products
     {
         public int Id { get; set; }
 
+        public string ProductCategory { get; set; }
+
         public string Brand { get; set; }
 
         public string Model { get; set; }
