@@ -15,6 +15,7 @@
                         <th scope="col">Details</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Remove</th>
                     </tr>
                 </thead>
                 <tbody align="center">
@@ -22,7 +23,7 @@
                     {
                     <tr align="center">
                         <th scope="row">@product.ProductCategory</th>
-                        <th scope="row">@product.Brand</th>
+                        <td>@product.Brand</td>
                         <td>@product.Model</td>
                         <td>
                             <div class="container">
@@ -32,15 +33,15 @@
                         </td>
                         <td>@product.Price</td>
                         <td>@product.Quantity</td>
-                        @*<td>
+                        <td>
                             @if (User.IsInRole("Admin"))
                             {
                                 <div class="button-holder">
-                                    <a asp-area="Admin" asp-controller="Assistances" asp-action="Delete" asp-route-id="@assistance.Id" class="btn btn-danger text-uppercase"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a asp-area="Admin" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger text-uppercase"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </div>
                             }
 
-                        </td>*@
+                        </td>
                     </tr>
                     }
                 </tbody>

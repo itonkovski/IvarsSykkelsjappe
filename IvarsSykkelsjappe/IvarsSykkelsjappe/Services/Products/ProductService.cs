@@ -34,6 +34,13 @@ namespace IvarsSykkelsjappe.Services.Products
             this.dbContext.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            var product = this.dbContext.Products.Find(id);
+            this.dbContext.Products.Remove(product);
+            this.dbContext.SaveChanges();
+        }
+
         public IEnumerable<ProductViewModel> GetAll()
         {
             var products = this.dbContext

@@ -11,5 +11,7 @@ namespace IvarsSykkelsjappe.Services.Products
         IEnumerable<ProductCategoryViewModel> GetProductCategories();
 
         IEnumerable<ProductViewModel> GetAll();
+
+        void Delete(int id);
     }
 }
