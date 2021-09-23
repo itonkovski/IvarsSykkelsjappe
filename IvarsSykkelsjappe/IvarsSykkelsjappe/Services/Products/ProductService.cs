@@ -66,8 +66,7 @@ namespace IvarsSykkelsjappe.Services.Products
                 .Select(x => new ProductCategoryViewModel
                 {
                     ProductCategoryId = x.Id,
-                    Name = x.Name,
-                    Price = x.
+                    Name = x.Name
                 })
                 .ToList();
     }

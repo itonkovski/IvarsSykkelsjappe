@@ -33,7 +33,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
 
         public int ProductCategoryId { get; set; }
 
-        public IEnumerable<ProductCategoryViewModel> Products { get; set; }
+        public IEnumerable<ProductViewModel> Products { get; set; }
 
         public string MechanicDetails { get; set; }
 

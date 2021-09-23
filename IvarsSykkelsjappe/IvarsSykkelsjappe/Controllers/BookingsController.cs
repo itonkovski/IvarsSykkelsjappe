@@ -111,7 +111,7 @@ namespace IvarsSykkelsjappe.Controllers
                 TimeSlot = order.TimeSlot,
                 AssistanceId = order.AssistanceId,
                 Assistances = this.bookingService.GetAssistances(),
-                Products = this.productService.GetProductCategories(),
+                Products = this.productService.GetAll(),
                 MechanicDetails = order.MechanicDetails,
                 PickUpTime = order.PickUpTime
             });
