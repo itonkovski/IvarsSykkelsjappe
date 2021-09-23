@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using IvarsSykkelsjappe.Data.Models;
+using IvarsSykkelsjappe.Models.Products;
 
 namespace IvarsSykkelsjappe.Models.Bookings
 {
@@ -29,6 +30,10 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public int AssistanceId { get; set; }
 
         public IEnumerable<OrderAssistanceViewModel> Assistances { get; set; }
+
+        public int ProductCategoryId { get; set; }
+
+        public IEnumerable<ProductCategoryViewModel> Products { get; set; }
 
         public string MechanicDetails { get; set; }
 

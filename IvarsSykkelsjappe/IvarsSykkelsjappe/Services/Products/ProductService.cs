@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
@@ -67,7 +66,8 @@ namespace IvarsSykkelsjappe.Services.Products
                 .Select(x => new ProductCategoryViewModel
                 {
                     ProductCategoryId = x.Id,
-                    Name = x.Name
+                    Name = x.Name,
+                    Price = x.
                 })
                 .ToList();
     }

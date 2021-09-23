@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using IvarsSykkelsjappe.Models.Bookings;
 using IvarsSykkelsjappe.Services.Bookings;
+using IvarsSykkelsjappe.Services.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,12 @@ namespace IvarsSykkelsjappe.Controllers
     public class BookingsController : Controller
     {
         private readonly IBookingService bookingService;
+        private readonly IProductService productService;
 
-        public BookingsController(IBookingService bookingService)
+        public BookingsController(IBookingService bookingService, IProductService productService)
         {
             this.bookingService = bookingService;
+            this.productService = productService;
         }
 
         [Authorize]
@@ -108,6 +111,7 @@ namespace IvarsSykkelsjappe.Controllers
                 TimeSlot = order.TimeSlot,
                 AssistanceId = order.AssistanceId,
                 Assistances = this.bookingService.GetAssistances(),
+                Products = this.productService.GetProductCategories(),
                 MechanicDetails = order.MechanicDetails,
                 PickUpTime = order.PickUpTime
             });
