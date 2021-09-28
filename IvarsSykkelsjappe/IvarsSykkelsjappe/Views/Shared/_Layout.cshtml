@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IvarsSykkelsjappe</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 </head>
 <body>
     <header>
@@ -16,6 +16,7 @@
                     <img src="/images/IvarsLogo.png" class="rounded-circle" width="50" height="50">
                     Ivars Sykkelsjappe
                 </a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Chat">Chat</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
@@ -76,20 +77,20 @@
                                 </div>
                             </li>
                             @*<li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Booking</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
-            </li>*@
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
+                    </li>*@
                             @*<li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="All">Admin Bikes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
-            </li>*@
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="All">Admin Bikes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
+                    </li>*@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="PopUps" asp-action="Location">Pop-Ups</a>
                             </li>
@@ -137,6 +138,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -12,6 +12,7 @@ using IvarsSykkelsjappe.Services.Bikes;
 using IvarsSykkelsjappe.Services.Bookings;
 using IvarsSykkelsjappe.Services.Assistances;
 using IvarsSykkelsjappe.Services.Products;
+using IvarsSykkelsjappe.Hubs;
 
 namespace IvarsSykkelsjappe
 {
@@ -45,8 +46,8 @@ namespace IvarsSykkelsjappe
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services
-                .AddAutoMapper(typeof(Startup));
+            services.AddSignalR();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllersWithViews(options =>
             {
@@ -87,7 +88,9 @@ namespace IvarsSykkelsjappe
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
+                    endpoints.MapHub<ChatHub>("/chat"); 
                 });
         }
     }
 }
+    

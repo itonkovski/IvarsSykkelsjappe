@@ -58,10 +58,10 @@
             <div class="form-group">
                 <label asp-for="Id">Used parts</label>
                 <select asp-for="Id" class="form-control">
-                    <option value="">All</option>
+                    <option value="">Category - Brand - Price</option>
                     @foreach (var product in Model.Products)
                     {
-                        <option value="@product.Id">@product.Brand => @product.Price</option>
+                        <option value="@product.Id">@product.ProductCategory - @product.Brand - $@product.Price</option>
                     }
                 </select>
                 <span asp-validation-for="ProductCategoryId" class="small text-danger"></span>
@@ -76,7 +76,7 @@
                 <input asp-for="PickUpTime" type="datetime-local" class="form-control" required placeholder="@DateTime.UtcNow">
                 <span asp-validation-for="PickUpTime" class="small text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>
+            <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>            
         </form>
     </div>
 </div>

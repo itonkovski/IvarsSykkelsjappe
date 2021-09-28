@@ -18,13 +18,19 @@ namespace IvarsSykkelsjappe.Controllers
             _logger = logger;
             this.bikeService = bikeService;
         }
-        
+
         public IActionResult Index()
         {
             var bikes = this.bikeService
                 .Latest()
                 .ToList();
             return View(bikes);
+        }
+
+        [Authorize]
+        public IActionResult Chat()
+        {
+            return this.View();
         }
 
         public IActionResult AboutUs()
