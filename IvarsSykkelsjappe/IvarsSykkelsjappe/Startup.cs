@@ -79,6 +79,7 @@ namespace IvarsSykkelsjappe
             app.UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseRouting()
+                .UseCookiePolicy()
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>

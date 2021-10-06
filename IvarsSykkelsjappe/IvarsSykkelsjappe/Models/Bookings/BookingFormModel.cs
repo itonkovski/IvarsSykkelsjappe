@@ -23,6 +23,7 @@ namespace IvarsSykkelsjappe.Models.Bookings
         public string PhoneNumber { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime TimeSlot { get; set; }
 
         [Required]

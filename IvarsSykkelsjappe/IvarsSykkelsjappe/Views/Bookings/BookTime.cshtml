@@ -24,7 +24,7 @@
             <hr>
             <div class="form-group">
                 <label asp-for="TimeSlot">Book-in Date</label>
-                <input asp-for="TimeSlot" type="datetime-local" class="form-control" required>
+                <input asp-for="TimeSlot" type="date" class="form-control" required>
                 <span asp-validation-for="TimeSlot" class="small text-danger"></span>
             </div>
             <hr>
@@ -43,3 +43,7 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

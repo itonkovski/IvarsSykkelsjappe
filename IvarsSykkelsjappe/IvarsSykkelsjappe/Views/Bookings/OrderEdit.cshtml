@@ -76,7 +76,11 @@
                 <input asp-for="PickUpTime" type="datetime-local" class="form-control" required placeholder="@DateTime.UtcNow">
                 <span asp-validation-for="PickUpTime" class="small text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>            
+            <button type="submit" class="btn btn-primary btn-block text-uppercase">Save</button>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,8 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Chat";
 }
-<h2 class="heading-margin text-center">Chat with Mechanic</h2>
-<br />
+<!--Bootdey Template-->
 <div class="chat_window">
     <div class="top_menu">
         <div class="buttons">
@@ -23,6 +22,36 @@
         </div>
     </div>
 </div>
+<div class="message_template">
+    <li class="message">
+        <div class="avatar"></div>
+        <div class="text_wrapper">
+            <div class="text"></div>
+        </div>
+    </li>
+</div>
+
+<!--Working with SignalR-->
+@*<br />
+    <div class="chat_window">
+        <div class="top_menu">
+            <div class="buttons">
+                <div class="button close"></div>
+                <div class="button minimize"></div>
+                <div class="button maximize"></div>
+            </div>
+            <div class="title">Chat</div>
+        </div>
+        <ul class="messages" id="messagesList"></ul>
+        <div class="bottom_wrapper clearfix" id="message-holder">
+            <div class="message_input_wrapper">
+                <input class="message_input" id="messageInput" placeholder="Type your message here..." />
+            </div>
+            <div class="send_message">
+                <div class="text" id="sendButton">Send</div>
+            </div>
+        </div>
+    </div>*@
 
 <!--Basic Chat Design from NikolayIT--->
 @*<div class="container">
@@ -36,60 +65,88 @@
         </div>
     </div>*@
 
-<!--Bootdey Template-->
-@*<div class="chat_window">
-        <div class="top_menu">
-            <div class="buttons">
-                <div class="button close"></div>
-                <div class="button minimize"></div>
-                <div class="button maximize"></div>
-            </div>
-            <div class="title">Chat</div>
-        </div>
-        <ul class="messages"></ul>
-        <div class="bottom_wrapper clearfix">
-            <div class="message_input_wrapper">
-                <input class="message_input" id="messageInput" placeholder="Type your message here..." />
-            </div>
-            <div class="send_message">
-                <div class="icon"></div>
-                <div class="text" id="sendButton">Send</div>
-            </div>
-        </div>
-    </div>
-    <div class="message_template">
-        <li class="message">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text"></div>
-            </div>
-        </li>
-    </div>*@
+<!--Script working with SignalR-->
+@*@section Scripts {
+    <script>var connection =
+                new signalR.HubConnectionBuilder()
+                    .withUrl("/chat")
+                    .build();
+            connection.on("NewMessage",
+                function (message) {
+                    var chatInfo = `<div>[${message.user}] ${escapeHtml(message.text)}</div>`;
+                    $("#messagesList").append(chatInfo);
+                });
+            $("#sendButton").click(function () {
+                var message = $("#messageInput").val();
+                connection.invoke("Send", message);
+                $("#messageInput").val("");
+            });
+            connection.start().catch(function (err) {
+                return console.error(err.toString());
+            });
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }</script>
+    }*@
 
 @section Scripts {
     <script>var connection =
             new signalR.HubConnectionBuilder()
                 .withUrl("/chat")
                 .build();
-        connection.on("NewMessage",
-            function (message) {
-                var chatInfo = `<div>[${message.user}] ${escapeHtml(message.text)}</div>`;
-                $("#messagesList").append(chatInfo);
+        (function () {
+            var Message;
+            Message = function (arg) {
+                this.text = arg.text, this.message_side = arg.message_side;
+                this.draw = function (_this) {
+                    return function () {
+                        var $message;
+                        $message = $($('.message_template').clone().html());
+                        $message.addClass(_this.message_side).find('.text').html(_this.text);
+                        $('.messages').append($message);
+                        return setTimeout(function () {
+                            return $message.addClass('appeared');
+                        }, 0);
+                    };
+                }(this);
+                return this;
+            };
+            $(function () {
+                var getMessageText, message_side, sendMessage;
+                message_side = 'right';
+                getMessageText = function () {
+                    var $message_input;
+                    $message_input = $('.message_input');
+                    return $message_input.val();
+                };
+                sendMessage = function (text) {
+                    var $messages, message;
+                    if (text.trim() === '') {
+                        return;
+                    }
+                    $('.message_input').val('');
+                    $messages = $('.messages');
+                    message_side = message_side === 'left' ? 'right' : 'left';
+                    message = new Message({
+                        text: text,
+                        message_side: message_side
+                    });
+                    message.draw();
+                    return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+                };
+                $('.send_message').click(function (e) {
+                    return sendMessage(getMessageText());
+                });
+                $('.message_input').keyup(function (e) {
+                    if (e.which === 13) {
+                        return sendMessage(getMessageText());
+                    }
+                });
             });
-        $("#sendButton").click(function () {
-            var message = $("#messageInput").val();
-            connection.invoke("Send", message);
-            $("#messageInput").val("");
-        });
-        connection.start().catch(function (err) {
-            return console.error(err.toString());
-        });
-        function escapeHtml(unsafe) {
-            return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }</script>
+        }.call(this));</script>
 }
