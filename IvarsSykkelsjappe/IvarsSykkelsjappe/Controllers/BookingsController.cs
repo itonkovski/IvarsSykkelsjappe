@@ -81,6 +81,10 @@ namespace IvarsSykkelsjappe.Controllers
         [Authorize(Roles = "Mechanic")]
         public IActionResult TakeOrder(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var mechanicName = User.FindFirstValue(ClaimTypes.Name);
             this.bookingService.TakeMechanic(id, mechanicId, mechanicName);

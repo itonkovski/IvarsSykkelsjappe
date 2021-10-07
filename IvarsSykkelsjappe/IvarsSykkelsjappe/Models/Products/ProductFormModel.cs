@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using IvarsSykkelsjappe.Data.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace IvarsSykkelsjappe.Models.Products
 {
@@ -44,6 +44,11 @@ namespace IvarsSykkelsjappe.Models.Products
         [Url]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; }
+
+        [Required]
+        [Display(Name = "Upload image")]
+        [MaxLength(10 * 1024 * 1024)]
+        public IFormFile Image { get; set; }
 
         [Display(Name = "Product Category")]
         public int ProductCategoryId { get; set; }

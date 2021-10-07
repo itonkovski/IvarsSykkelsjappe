@@ -4,7 +4,6 @@ using System.Linq;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bookings;
-using Microsoft.AspNetCore.Identity;
 
 namespace IvarsSykkelsjappe.Services.Bookings
 {

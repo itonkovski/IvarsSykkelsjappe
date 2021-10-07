@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace IvarsSykkelsjappe.Models.Bikes
 {
@@ -36,6 +37,11 @@ namespace IvarsSykkelsjappe.Models.Bikes
         [Url]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; }
+
+        [Required]
+        [Display(Name = "Upload image")]
+        [MaxLength(10 * 1024 * 1024)]
+        public IFormFile Image { get; set; }
 
         [Range(YearMinValue, YearMaxValue)]
         public int Year { get; set; }
