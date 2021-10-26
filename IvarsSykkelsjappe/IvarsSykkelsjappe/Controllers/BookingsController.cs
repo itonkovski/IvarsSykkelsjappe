@@ -3,6 +3,7 @@ using IvarsSykkelsjappe.Models.Bookings;
 using IvarsSykkelsjappe.Services.Bookings;
 using IvarsSykkelsjappe.Services.Products;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Controllers
@@ -13,11 +14,13 @@ namespace IvarsSykkelsjappe.Controllers
     {
         private readonly IBookingService bookingService;
         private readonly IProductService productService;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public BookingsController(IBookingService bookingService, IProductService productService)
+        public BookingsController(IBookingService bookingService, IProductService productService, UserManager<IdentityUser> userManager)
         {
             this.bookingService = bookingService;
             this.productService = productService;
+            this.userManager = userManager;
         }
 
         [Authorize]
@@ -37,6 +40,8 @@ namespace IvarsSykkelsjappe.Controllers
 
             //var clientId = this.User.GetId();
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //maybe is better to use the UserManager
+            var clientIdWithUM = this.userManager.GetUserId(this.User);
 
             if (!ModelState.IsValid)
             {

@@ -40,6 +40,10 @@
     <None Remove="libman.jsin" />
     <None Remove="Hubs\" />
     <None Remove="Models\Chat\" />
+    <None Remove="CloudinaryDotNet" />
+    <None Remove="Infrastructure\Photos\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.Facebook" />
+    <None Remove="Infrastructure\FaceBookAuth\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -61,6 +65,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.15.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.11" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,6 +102,8 @@
     <Folder Include="Services\Products\" />
     <Folder Include="Hubs\" />
     <Folder Include="Models\Chat\" />
+    <Folder Include="Infrastructure\Photos\" />
+    <Folder Include="Infrastructure\FaceBookAuth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">

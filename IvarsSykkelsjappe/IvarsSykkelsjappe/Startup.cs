@@ -13,6 +13,7 @@ using IvarsSykkelsjappe.Services.Bookings;
 using IvarsSykkelsjappe.Services.Assistances;
 using IvarsSykkelsjappe.Services.Products;
 using IvarsSykkelsjappe.Hubs;
+using IvarsSykkelsjappe.Infrastructure.Photos;
 
 namespace IvarsSykkelsjappe
 {
@@ -48,7 +49,13 @@ namespace IvarsSykkelsjappe
 
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
-
+            services.AddAuthentication().AddFacebook(option =>
+            {
+                option.AppId = Configuration["Facebook:AppId"];
+                option.AppSecret = Configuration["Facebook:AppSecret"];
+                option.AccessDeniedPath = "/AccessDeniedPathInfo";
+            });
+            
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
@@ -58,6 +65,7 @@ namespace IvarsSykkelsjappe
             services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<IAssistanceService, AssistanceService>();
             services.AddTransient<IProductService, ProductService>();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
