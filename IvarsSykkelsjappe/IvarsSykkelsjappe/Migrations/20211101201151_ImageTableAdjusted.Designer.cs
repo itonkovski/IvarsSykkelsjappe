@@ -4,14 +4,16 @@ using IvarsSykkelsjappe.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvarsSykkelsjappe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211101201151_ImageTableAdjusted")]
+    partial class ImageTableAdjusted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,9 +159,14 @@ namespace IvarsSykkelsjappe.Migrations
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BikeId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Images");
                 });
@@ -477,7 +484,15 @@ namespace IvarsSykkelsjappe.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("IvarsSykkelsjappe.Data.Models.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Bike");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Product", b =>
@@ -550,6 +565,11 @@ namespace IvarsSykkelsjappe.Migrations
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.BikeCategory", b =>
                 {
                     b.Navigation("Bikes");
+                });
+
+            modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.Product", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("IvarsSykkelsjappe.Data.Models.ProductCategory", b =>

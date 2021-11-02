@@ -6,7 +6,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
 {
     public interface IBikeService
     {
-        void Add(BikeFormModel bike);
+        void Add(BikeFormModel bike, string imagePath);
 
         void Edit(BikeFormModel bike, int id);
 

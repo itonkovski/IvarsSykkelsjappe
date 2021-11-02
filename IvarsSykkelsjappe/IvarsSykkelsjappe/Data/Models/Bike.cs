@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IvarsSykkelsjappe.Data.Models
@@ -7,6 +8,11 @@ namespace IvarsSykkelsjappe.Data.Models
 
     public class Bike
     {
+        public Bike()
+        {
+            this.Images = new HashSet<Image>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -26,6 +32,8 @@ namespace IvarsSykkelsjappe.Data.Models
 
         [Required]
         public string ImageUrl { get; set; }
+
+        public virtual ICollection<Image> Images { get; set; }
 
         [Required]
         public int Year { get; set; }

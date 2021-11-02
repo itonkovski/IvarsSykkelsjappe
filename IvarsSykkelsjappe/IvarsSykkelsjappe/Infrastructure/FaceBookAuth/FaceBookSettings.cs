@@ -1,5 +1,4 @@
-﻿using System;
-namespace IvarsSykkelsjappe.Infrastructure.FaceBookAuth
+﻿namespace IvarsSykkelsjappe.Infrastructure.FaceBookAuth
 {
     public class FaceBookSettings
     {

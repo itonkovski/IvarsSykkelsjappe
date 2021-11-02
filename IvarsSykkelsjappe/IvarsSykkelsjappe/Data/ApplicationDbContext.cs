@@ -1,5 +1,4 @@
 ﻿using IvarsSykkelsjappe.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +19,8 @@ namespace IvarsSykkelsjappe.Data
         public DbSet<Product> Products { get; set; }
 
         public DbSet<ProductCategory> ProductsCategories { get; set; }
+
+        public DbSet<Image> Images { get; set; }
 
         public DbSet<Assistance> Assistances { get; set; }
 

@@ -44,6 +44,7 @@
     <None Remove="Infrastructure\Photos\" />
     <None Remove="Microsoft.AspNetCore.Authentication.Facebook" />
     <None Remove="Infrastructure\FaceBookAuth\" />
+    <None Remove="Areas\Admin\Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -104,6 +105,7 @@
     <Folder Include="Models\Chat\" />
     <Folder Include="Infrastructure\Photos\" />
     <Folder Include="Infrastructure\FaceBookAuth\" />
+    <Folder Include="Areas\Admin\Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
@@ -224,6 +226,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\js\signalr\dist\browser\signalr.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bikes\1da8cd15-0ee4-4c52-aa51-a9d3df92fba6.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bikes\5a401f1d-6f1f-4a21-afb4-f020abef5eef.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

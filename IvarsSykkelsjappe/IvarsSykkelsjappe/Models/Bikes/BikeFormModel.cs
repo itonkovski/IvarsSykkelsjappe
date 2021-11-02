@@ -38,10 +38,14 @@ namespace IvarsSykkelsjappe.Models.Bikes
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; }
 
-        [Required]
+        //[Required]
+        //[Display(Name = "Upload image")]
+        //[MaxLength(10 * 1024 * 1024)]
+        //public IFormFile Image { get; set; }
+
         [Display(Name = "Upload image")]
-        [MaxLength(10 * 1024 * 1024)]
-        public IFormFile Image { get; set; }
+        //[MaxLength(10 * 1024 * 1024)]
+        public IEnumerable<IFormFile> Images { get; set; }
 
         [Range(YearMinValue, YearMaxValue)]
         public int Year { get; set; }

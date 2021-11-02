@@ -22,6 +22,10 @@
                 <input asp-for="Price" readonly class="form-control">
             </div>
             <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl" readonly class="form-control">
+            </div>
+            <div class="form-group">
                 <label asp-for="Year">Year</label>
                 <input asp-for="Year" readonly class="form-control">
             </div>
@@ -33,15 +37,11 @@
                 <label asp-for="Description"></label>
                 <textarea asp-for="Description" readonly class="form-control" rows="5"></textarea>
             </div>
-            @if (!User.IsInRole("Admin") && !User.IsInRole("Mechanic"))
-            {
-                <div class="form-group text-center">
-                    <div class="button-holder">
-                        <a href="/Bikes/AddUserToBike?bikeId=Id" class="btn btn-primary btn-block text-uppercase">Add To Cart</a>
-                    </div>
+            <div class="form-group text-center">
+                <div class="button-holder">
+                    <a asp-area="Admin" asp-controller="Bikes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-uppercase">Edit</a>
                 </div>
-            }
-
+            </div>
         </div>
     </div>
 </section>  

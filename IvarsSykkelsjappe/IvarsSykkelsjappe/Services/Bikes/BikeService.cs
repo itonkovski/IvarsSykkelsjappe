@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -10,6 +12,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
 {
     public class BikeService : IBikeService
     {
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "jpeg" };
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
 
@@ -19,7 +22,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
             this.mapper = mapper;
         }
 
-        public void Add(BikeFormModel bike)
+        public void Add(BikeFormModel bike, string imagePath)
         {
             var bikeData = new Bike
             {
@@ -31,6 +34,26 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 Year = bike.Year,
                 BikeCategoryId = bike.BikeCategoryId
             };
+
+            Directory.CreateDirectory($"{imagePath}/bikes/");
+            foreach (var image in bike.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    Extension = extension,
+                };
+                bikeData.Images.Add(dbImage);
+
+                var physicalPath = $"{imagePath}/bikes/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                image.CopyTo(fileStream);
+            }
 
             this.dbContext.Bikes.Add(bikeData);
             this.dbContext.SaveChanges();
@@ -74,7 +97,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Brand = x.Brand,
                     Model = x.Model,
                     Year = x.Year,
-                    ImageUrl = x.ImageUrl,
+                    ImageUrl = "/images/bikes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension,
                     BikeCategory = x.BikeCategory.Name
                 })
                 .ToList();
@@ -137,7 +160,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Year = x.Year,
                     Description = x.Description,
                     BikeCategory = x.BikeCategory.Name,
-                    ImageUrl = x.ImageUrl,
+                    ImageUrl = "/images/bikes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension
                 })
                 .FirstOrDefault();
             return bike;
@@ -156,7 +179,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Year = x.Year,
                     Description = x.Description,
                     BikeCategoryId = x.BikeCategoryId,
-                    ImageUrl = x.ImageUrl,
+                    ImageUrl = x.ImageUrl
                 })
                 .FirstOrDefault();
             return bike;
@@ -190,15 +213,15 @@ namespace IvarsSykkelsjappe.Services.Bikes
             var bikes = this.dbContext
                 .Bikes
                 .OrderByDescending(c => c.Id)
-                .ProjectTo<BikeLatestIndexCarousel>(this.mapper.ConfigurationProvider)
-                //.Select(x => new BikeLatestIndexCarousel
-                //{
-                //    Id = x.Id,
-                //    Brand = x.Brand,
-                //    Model = x.Model,
-                //    ImageUrl = x.ImageUrl,
-                //    Year = x.Year
-                //})
+                //.ProjectTo<BikeLatestIndexCarousel>(this.mapper.ConfigurationProvider)
+                .Select(x => new BikeLatestIndexCarousel
+                {
+                    Id = x.Id,
+                    Brand = x.Brand,
+                    Model = x.Model,
+                    ImageUrl = "/images/bikes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension,
+                    Year = x.Year
+                })
                 .Take(3)
                 .ToList();
 

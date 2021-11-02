@@ -40,8 +40,9 @@ namespace IvarsSykkelsjappe.Controllers
 
             //var clientId = this.User.GetId();
             var clientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //maybe is better to use the UserManager
-            var clientIdWithUM = this.userManager.GetUserId(this.User);
+
+            //get it from the DB
+            //var clientIdWithUM = this.userManager.GetUserId(this.User);
 
             if (!ModelState.IsValid)
             {

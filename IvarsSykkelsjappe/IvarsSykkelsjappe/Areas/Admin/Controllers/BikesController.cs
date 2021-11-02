@@ -2,6 +2,7 @@
 using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Areas.Admin.Controllers
@@ -12,16 +13,13 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
     {
         private readonly IBikeService bikeService;
         private readonly IMapper mapper;
+        private readonly IWebHostEnvironment environment;
 
-        public BikesController(IBikeService bikeService, IMapper mapper)
+        public BikesController(IBikeService bikeService, IMapper mapper, IWebHostEnvironment environment)
         {
             this.bikeService = bikeService;
             this.mapper = mapper;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            this.environment = environment;
         }
 
         public IActionResult All()
@@ -91,7 +89,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
                 return View(bikeForm);
             }
 
-            this.bikeService.Add(bikeForm);
+            this.bikeService.Add(bikeForm, $"{this.environment.WebRootPath}/images");
             TempData[GlobalMessageKey] = "The bike was added successfully.";
             return RedirectToAction(nameof(All));
         }
