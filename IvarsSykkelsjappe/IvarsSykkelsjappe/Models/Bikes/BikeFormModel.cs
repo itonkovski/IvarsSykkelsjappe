@@ -34,15 +34,6 @@ namespace IvarsSykkelsjappe.Models.Bikes
         public string Description { get; set; }
 
         [Required]
-        [Url]
-        [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; }
-
-        //[Required]
-        //[Display(Name = "Upload image")]
-        //[MaxLength(10 * 1024 * 1024)]
-        //public IFormFile Image { get; set; }
-
         [Display(Name = "Upload image")]
         //[MaxLength(10 * 1024 * 1024)]
         public IEnumerable<IFormFile> Images { get; set; }

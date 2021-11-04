@@ -30,9 +30,6 @@ namespace IvarsSykkelsjappe.Data.Models
         [Required]
         public string Description { get; set; }
 
-        [Required]
-        public string ImageUrl { get; set; }
-
         public virtual ICollection<Image> Images { get; set; }
 
         [Required]

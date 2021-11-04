@@ -30,7 +30,6 @@
     <None Remove="Areas\Mechanic\Views\" />
     <None Remove="Models\Assistances\" />
     <None Remove="Services\Assistances\" />
-    <None Remove="Views\Assistances\" />
     <None Remove="Areas\Admin\Views\Assistances\" />
     <None Remove="Areas\Admin\Views\Bookings\" />
     <None Remove="Areas\Admin\Views\Products\" />
@@ -95,7 +94,6 @@
     <Folder Include="Areas\Mechanic\Views\" />
     <Folder Include="Models\Assistances\" />
     <Folder Include="Services\Assistances\" />
-    <Folder Include="Views\Assistances\" />
     <Folder Include="Areas\Admin\Views\Assistances\" />
     <Folder Include="Areas\Admin\Views\Bookings\" />
     <Folder Include="Areas\Admin\Views\Products\" />
@@ -111,9 +109,6 @@
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-    <Content Update="Views\Bikes\Create.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -121,9 +116,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bikes\All.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Views\Bikes\Details.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\Bookings\BookTime.cshtml">
@@ -160,12 +152,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\js\site.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Views\Bikes\AllAdmin.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="Views\Bikes\Edit.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Views\PopUps\PopUp.cshtml">
@@ -232,6 +218,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\images\bikes\5a401f1d-6f1f-4a21-afb4-f020abef5eef.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\Home\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

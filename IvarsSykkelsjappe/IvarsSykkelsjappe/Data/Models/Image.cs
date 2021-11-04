@@ -14,6 +14,6 @@ namespace IvarsSykkelsjappe.Data.Models
 
         public int BikeId { get; set; }
 
-        public virtual Bike Bike { get; set; }
+        public Bike Bike { get; set; }
     }
 }

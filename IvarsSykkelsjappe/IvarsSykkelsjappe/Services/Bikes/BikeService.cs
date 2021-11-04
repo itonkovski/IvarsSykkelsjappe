@@ -30,7 +30,6 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 Model = bike.Model,
                 Price = bike.Price,
                 Description = bike.Description,
-                ImageUrl = bike.ImageUrl,
                 Year = bike.Year,
                 BikeCategoryId = bike.BikeCategoryId
             };
@@ -178,8 +177,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Price = x.Price,
                     Year = x.Year,
                     Description = x.Description,
-                    BikeCategoryId = x.BikeCategoryId,
-                    ImageUrl = x.ImageUrl
+                    BikeCategoryId = x.BikeCategoryId
                 })
                 .FirstOrDefault();
             return bike;
@@ -195,7 +193,6 @@ namespace IvarsSykkelsjappe.Services.Bikes
             bikeData.Year = bike.Year;
             bikeData.Description = bike.Description;
             bikeData.BikeCategoryId = bike.BikeCategoryId;
-            bikeData.ImageUrl = bike.ImageUrl;
 
             this.dbContext.SaveChanges();
 
