@@ -35,6 +35,15 @@ namespace IvarsSykkelsjappe
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            services.AddMemoryCache();
+            services.AddDistributedSqlServerCache(
+                options =>
+                {
+                    options.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+                    options.SchemaName = "dbo";
+                    options.TableName = "CacheRecords";
+                });
+
             services
                 .AddDefaultIdentity<IdentityUser>(options =>
                 {
@@ -65,6 +74,7 @@ namespace IvarsSykkelsjappe
             services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<IAssistanceService, AssistanceService>();
             services.AddTransient<IProductService, ProductService>();
+
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 

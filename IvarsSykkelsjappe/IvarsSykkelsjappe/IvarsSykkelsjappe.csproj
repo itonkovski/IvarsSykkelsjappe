@@ -44,6 +44,7 @@
     <None Remove="Microsoft.AspNetCore.Authentication.Facebook" />
     <None Remove="Infrastructure\FaceBookAuth\" />
     <None Remove="Areas\Admin\Views\Home\" />
+    <None Remove="Microsoft.Extensions.Caching.SqlServer" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -67,6 +68,7 @@
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
     <PackageReference Include="CloudinaryDotNet" Version="1.15.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
