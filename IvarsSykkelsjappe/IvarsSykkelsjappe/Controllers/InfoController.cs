@@ -25,6 +25,12 @@ namespace IvarsSykkelsjappe.Controllers
             return DateTime.Now;
         }
 
+        //There is a way to cache with attribites
+        //[ResponseCache(Duration = 24 * 60 * 60, Location = ResponseCacheLocation.Client)]
+        //Or directly into the view
+        //<cache expires-after="TimeSpan.FromMinutes(10)">
+        //    <vc:registered-users title = "Registered users" ></ vc:registered-users>
+        //</cache>
         public async Task<IActionResult> Date()
         {
             this.logger.LogCritical(12345, "User asked for the date.");
