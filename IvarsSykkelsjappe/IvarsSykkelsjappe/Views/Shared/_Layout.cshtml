@@ -124,9 +124,10 @@
         <main role="main" class="pb-3">
             @if (TempData.ContainsKey(WebConstants.GlobalMessageKey))
             {
-                <div class="alert alert-success text-center" role="alert">
-                    @TempData[WebConstants.GlobalMessageKey]
-                </div>
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                @TempData[WebConstants.GlobalMessageKey]
+            </div>
             }
             @RenderBody()
         </main>
