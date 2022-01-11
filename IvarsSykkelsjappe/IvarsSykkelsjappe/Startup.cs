@@ -14,6 +14,7 @@ using IvarsSykkelsjappe.Services.Assistances;
 using IvarsSykkelsjappe.Services.Products;
 using IvarsSykkelsjappe.Hubs;
 using IvarsSykkelsjappe.Infrastructure.Photos;
+using Microsoft.AspNetCore.Http;
 
 namespace IvarsSykkelsjappe
 {
@@ -55,6 +56,13 @@ namespace IvarsSykkelsjappe
                 })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.Configure<CookiePolicyOptions>(
+                options =>
+                {
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));

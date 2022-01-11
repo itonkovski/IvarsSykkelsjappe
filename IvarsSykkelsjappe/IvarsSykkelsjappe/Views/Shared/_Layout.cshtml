@@ -78,20 +78,20 @@
                                 </div>
                             </li>
                             @*<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
-                    </li>*@
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="BookTime">Booking</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="AllBookings">All Bookings</a>
+                                </li>*@
                             @*<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="All">Admin Bikes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
-                    </li>*@
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="Create">Create Bike</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bikes" asp-action="All">Admin Bikes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bikes" asp-action="AllCustomer">Our Bikes</a>
+                                </li>*@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="PopUps" asp-action="Location">Pop-Ups</a>
                             </li>
@@ -120,14 +120,22 @@
             </div>
         </nav>
     </header>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @if (TempData.ContainsKey(WebConstants.GlobalMessageKey))
             {
-            <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-                @TempData[WebConstants.GlobalMessageKey]
-            </div>
+                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                    @TempData[WebConstants.GlobalMessageKey]
+                </div>
             }
             @RenderBody()
         </main>
