@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IvarsSykkelsjappe - Bicycle repair service</title>
+    <title>@ViewData["Title"] @WebConstants.SystemSlogan</title>
     <meta name="description" content="Tired of mass produced bikes with no identity? We set out to create some bicycle all-stars, loaded with character. Each of our custom bicycles has a unique story - just like you">
     <meta name="keywords" content="Bicycle repair, bicycle services, bicycle shop, bicycle popup, book repair">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -145,7 +145,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.UtcNow.Year - IvarsSykkelsjappe - <a asp-area="" asp-controller="Bookings" asp-action="BookTime">Book time at the workshop</a>
+            &copy; @DateTime.UtcNow.Year - @WebConstants.SystemName - <a asp-area="" asp-controller="Bookings" asp-action="BookTime">Book time at the workshop</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
