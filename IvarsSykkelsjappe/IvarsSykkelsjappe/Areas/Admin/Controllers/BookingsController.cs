@@ -25,7 +25,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         {
             this.bookingService.Delete(id);
             TempData[GlobalMessageKey] = "The booking was deleted successfully.";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(AllBookings));
         }
     }
 }

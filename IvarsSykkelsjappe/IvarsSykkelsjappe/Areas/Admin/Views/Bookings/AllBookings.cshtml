@@ -43,32 +43,32 @@
                             <td>@booking.MechanicName</td>
                         }
                         <td>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <div class="button-holder">
-                                    <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>
-                                </div>
-                            }
-                            else if (User.IsInRole("Mechanic"))
-                            {
-                                <div class="button-holder">
-                                    <form action="" method="post">
-                                        <button asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" class="btn btn-warning text-uppercase">Choose</button>
-                                    </form>
-                                </div>
-                            }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="button-holder">
+                                <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.Id" class="btn btn-danger text-uppercase">Delete</a>
+                            </div>
+                        }
+                        else if (User.IsInRole("Mechanic"))
+                        {
+                            <div class="button-holder">
+                                <form action="" method="post">
+                                    <button asp-controller="Bookings" asp-action="TakeOrder" asp-route-id="@booking.Id" class="btn btn-warning text-uppercase">Choose</button>
+                                </form>
+                            </div>
+                        }
 
                         </td>
                         @*<td>
-            <div class="button-holder">
-                <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
-            </div>
-        </td>
-        <td>
-            <div class="button-holder">
-                <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
-            </div>
-        </td>*@
+                        <div class="button-holder">
+                            <a asp-controller="Bikes" asp-action="Details" asp-route-id="@bike.Id" class="btn btn-info text-uppercase">Info</a>
+                        </div>
+                        </td>
+                        <td>
+                            <div class="button-holder">
+                                <a asp-controller="Bikes" asp-action="Edit" asp-route-id="@bike.Id" class="btn btn-warning text-uppercase">Edit</a>
+                            </div>
+                        </td>*@
                     </tr>
                     }
                 </tbody>
