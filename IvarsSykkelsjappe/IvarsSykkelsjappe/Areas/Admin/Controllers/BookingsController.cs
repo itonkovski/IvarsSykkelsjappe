@@ -21,6 +21,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             return View(bookings);
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             this.bookingService.Delete(id);
