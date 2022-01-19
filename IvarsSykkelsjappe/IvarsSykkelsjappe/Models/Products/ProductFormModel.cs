@@ -45,7 +45,7 @@ namespace IvarsSykkelsjappe.Models.Products
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Upload image")]
         [MaxLength(10 * 1024 * 1024)]
         public IFormFile Image { get; set; }

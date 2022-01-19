@@ -100,6 +100,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             return View(bike);
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             this.bikeService.Delete(id);

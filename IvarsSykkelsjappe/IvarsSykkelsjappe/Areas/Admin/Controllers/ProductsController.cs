@@ -44,6 +44,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
             return View(products);
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             this.productService.Delete(id);
