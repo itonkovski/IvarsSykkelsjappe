@@ -37,30 +37,29 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
 
             var bike = this.bikeService.GetEdit(id);
 
-            var bikeForm = this.mapper.Map<BikeFormModel>(bike);
+            //var bikeForm = this.mapper.Map<BikeFormModel>(bike);
 
-            bikeForm.Categories = this.bikeService.GetBikeCategories();
+            //bikeForm.Categories = this.bikeService.GetBikeCategories();
 
-            return View(bikeForm);
+            //return View(bikeForm);
 
             //without AutoMapper
-            //return View(new BikeFormModel
-            //{
-            //    Brand = bike.Brand,
-            //    Model = bike.Model,
-            //    Description = bike.Description,
-            //    Price = bike.Price,
-            //    ImageUrl = bike.ImageUrl,
-            //    Year = bike.Year,
-            //    BikeCategoryId = bike.BikeCategoryId,
-            //    Categories = this.bikeService.GetBikeCategories()
-            //});
+            return View(new BikeFormModel
+            {
+                Brand = bike.Brand,
+                Model = bike.Model,
+                Description = bike.Description,
+                Price = bike.Price,
+                Year = bike.Year,
+                //ImageUrl = bike.ImageUrl, 
+                BikeCategoryId = bike.BikeCategoryId,
+                Categories = this.bikeService.GetBikeCategories()
+            });
         }
 
         [HttpPost]
         public IActionResult Edit(BikeFormModel bikeModel, int id)
         {
-
             if (!ModelState.IsValid)
             {
                 bikeModel.Categories = this.bikeService.GetBikeCategories();

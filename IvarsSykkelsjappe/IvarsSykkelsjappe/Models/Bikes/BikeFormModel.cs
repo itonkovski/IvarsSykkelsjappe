@@ -33,7 +33,7 @@ namespace IvarsSykkelsjappe.Models.Bikes
             ErrorMessage = "The Description is required and should be minimum {2} symbols.")]
         public string Description { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Upload image")]
         //[MaxLength(10 * 1024 * 1024)]
         public IEnumerable<IFormFile> Images { get; set; }
