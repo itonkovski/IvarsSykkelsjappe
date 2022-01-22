@@ -1,4 +1,5 @@
-﻿using IvarsSykkelsjappe.Models.Assistances;
+﻿using System.Threading.Tasks;
+using IvarsSykkelsjappe.Models.Assistances;
 using IvarsSykkelsjappe.Services.Assistances;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +23,14 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(AssistanceFormModel assistanceForm)
+        public async Task<IActionResult> Create(AssistanceFormModel assistanceForm)
         {
             if (!ModelState.IsValid)
             {
                 return View(assistanceForm);
             }
 
-            this.assistanceService.Add(assistanceForm);
+            await this.assistanceService.AddAsync(assistanceForm);
             TempData[GlobalMessageKey] = "The service was added successfully.";
             return RedirectToAction(nameof(AllAssistances));
         }
@@ -41,9 +42,9 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.assistanceService.Delete(id);
+            await this.assistanceService.DeleteAsync(id);
             TempData[GlobalMessageKey] = "The service was deleted successfully.";
             return RedirectToAction(nameof(AllAssistances));
         }

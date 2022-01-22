@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Assistances;
@@ -16,7 +16,7 @@ namespace IvarsSykkelsjappe.Services.Assistances
             this.dbContext = dbContext;
         }
 
-        public void Add(AssistanceFormModel assistance)
+        public async Task AddAsync(AssistanceFormModel assistance)
         {
             var assistanceData = new Assistance
             {
@@ -25,15 +25,15 @@ namespace IvarsSykkelsjappe.Services.Assistances
                 Price = assistance.Price
             };
 
-            this.dbContext.Assistances.Add(assistanceData);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Assistances.AddAsync(assistanceData);
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var assistance = this.dbContext.Assistances.Find(id);
             this.dbContext.Assistances.Remove(assistance);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<AssistanceViewModel> GetAll()

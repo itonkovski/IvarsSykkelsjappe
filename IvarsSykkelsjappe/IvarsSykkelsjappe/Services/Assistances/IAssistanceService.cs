@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Assistances;
 
 namespace IvarsSykkelsjappe.Services.Assistances
 {
     public interface IAssistanceService
     {
-        void Add(AssistanceFormModel assistance);
+        Task AddAsync(AssistanceFormModel assistance);
 
         IEnumerable<AssistanceViewModel> GetAll();
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }
