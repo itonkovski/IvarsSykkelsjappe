@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Products;
 
 namespace IvarsSykkelsjappe.Services.Products
 {
     public interface IProductService
     {
-        void Add(ProductFormModel product);
+        Task AddAsync(ProductFormModel product);
 
         IEnumerable<ProductCategoryViewModel> GetProductCategories();
 
         IEnumerable<ProductViewModel> GetAll();
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

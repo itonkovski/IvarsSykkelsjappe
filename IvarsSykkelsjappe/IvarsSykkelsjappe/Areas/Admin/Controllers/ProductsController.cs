@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Products;
 using IvarsSykkelsjappe.Services.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductFormModel productForm)
+        public async Task<IActionResult> Create(ProductFormModel productForm)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +34,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
                 return View(productForm);
             }
 
-            this.productService.Add(productForm);
+            await this.productService.AddAsync(productForm);
             TempData[GlobalMessageKey] = "The product was added successfully.";
             return RedirectToAction(nameof(AllProducts));
         }
@@ -45,9 +46,9 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.productService.Delete(id);
+            await this.productService.DeleteAsync(id);
             TempData[GlobalMessageKey] = "The product was deleted successfully.";
             return RedirectToAction(nameof(AllProducts));
         }

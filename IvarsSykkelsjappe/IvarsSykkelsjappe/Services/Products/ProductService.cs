@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Products;
@@ -15,7 +16,7 @@ namespace IvarsSykkelsjappe.Services.Products
             this.dbContext = dbContext;
         }
 
-        public void Add(ProductFormModel product)
+        public async Task AddAsync(ProductFormModel product)
         {
             var productData = new Product
             {
@@ -29,15 +30,15 @@ namespace IvarsSykkelsjappe.Services.Products
                 ProductCategoryId = product.ProductCategoryId
             };
 
-            this.dbContext.Products.Add(productData);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Products.AddAsync(productData);
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var product = this.dbContext.Products.Find(id);
             this.dbContext.Products.Remove(product);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<ProductViewModel> GetAll()
