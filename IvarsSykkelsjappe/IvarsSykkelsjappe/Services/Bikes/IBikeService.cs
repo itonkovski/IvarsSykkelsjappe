@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Bikes;
 
 namespace IvarsSykkelsjappe.Services.Bikes
 {
     public interface IBikeService
     {
-        void Add(BikeFormModel bike, string imagePath);
+        Task AddAsync(BikeFormModel bike, string imagePath);
 
-        void Edit(BikeFormModel bike, int id);
+        Task EditAsync(BikeFormModel bike, int id);
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
 
         IEnumerable<BikeCategoryViewModel> GetBikeCategories();
 
@@ -23,5 +24,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
         IEnumerable<BikeLatestIndexCarousel> Latest();
 
         public void AllSearch(AllBikesQueryModel bikeModel);
+
+        BikeDetailsViewModel SendBikeByEmail(int id);
     }
 }

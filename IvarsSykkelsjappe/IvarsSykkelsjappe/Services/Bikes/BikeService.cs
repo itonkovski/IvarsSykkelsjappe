@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bikes;
@@ -22,7 +22,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
             this.mapper = mapper;
         }
 
-        public void Add(BikeFormModel bike, string imagePath)
+        public async Task AddAsync(BikeFormModel bike, string imagePath)
         {
             var bikeData = new Bike
             {
@@ -54,8 +54,8 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 image.CopyTo(fileStream);
             }
 
-            this.dbContext.Bikes.Add(bikeData);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Bikes.AddAsync(bikeData);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public void AllSearch(AllBikesQueryModel queryModel)
@@ -176,6 +176,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
                     Brand = x.Brand,
                     Price = x.Price,
                     Year = x.Year,
+                    //ImageUrl = "/images/bikes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension,
                     Description = x.Description,
                     BikeCategoryId = x.BikeCategoryId
                 })
@@ -183,7 +184,7 @@ namespace IvarsSykkelsjappe.Services.Bikes
             return bike;
         }
 
-        public void Edit(BikeFormModel bike, int id)
+        public async Task EditAsync(BikeFormModel bike, int id)
         {
             var bikeData = this.dbContext.Bikes.Find(id);
 
@@ -194,15 +195,15 @@ namespace IvarsSykkelsjappe.Services.Bikes
             bikeData.Description = bike.Description;
             bikeData.BikeCategoryId = bike.BikeCategoryId;
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
 
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var bike = this.dbContext.Bikes.Find(id);
             this.dbContext.Bikes.Remove(bike);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<BikeLatestIndexCarousel> Latest()
@@ -223,6 +224,21 @@ namespace IvarsSykkelsjappe.Services.Bikes
                 .ToList();
 
             return bikes;
+        }
+
+        public BikeDetailsViewModel SendBikeByEmail(int id)
+        {
+            var bike = this.dbContext
+                .Bikes
+                .Where(x => x.Id == id)
+                .Select(x => new BikeDetailsViewModel
+                {
+                    Id = x.Id,
+                    Brand = x.Brand,
+                    Model = x.Model
+                })
+                .FirstOrDefault();
+            return bike;
         }
     }
 }

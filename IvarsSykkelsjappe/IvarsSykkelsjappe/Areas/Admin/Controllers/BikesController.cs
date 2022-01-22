@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
 using Microsoft.AspNetCore.Authorization;
@@ -58,7 +59,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BikeFormModel bikeModel, int id)
+        public async Task<IActionResult> Edit(BikeFormModel bikeModel, int id)
         {
             if (!ModelState.IsValid)
             {
@@ -66,7 +67,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
                 return View(bikeModel);
             }
 
-            this.bikeService.Edit(bikeModel, id);
+            await this.bikeService.EditAsync(bikeModel, id);
             TempData[GlobalMessageKey] = "The bike was edited successfully.";
             return RedirectToAction(nameof(All));
         }
@@ -80,7 +81,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BikeFormModel bikeForm)
+        public async Task<IActionResult> Create(BikeFormModel bikeForm)
         {
             if (!ModelState.IsValid)
             {
@@ -88,7 +89,7 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
                 return View(bikeForm);
             }
 
-            this.bikeService.Add(bikeForm, $"{this.environment.WebRootPath}/images");
+            await this.bikeService.AddAsync(bikeForm, $"{this.environment.WebRootPath}/images");
             TempData[GlobalMessageKey] = "The bike was added successfully.";
             return RedirectToAction(nameof(All));
         }
@@ -100,9 +101,9 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.bikeService.Delete(id);
+            await this.bikeService.DeleteAsync(id);
             TempData[GlobalMessageKey] = "The bike was deleted successfully.";
             return RedirectToAction(nameof(All));
         }
