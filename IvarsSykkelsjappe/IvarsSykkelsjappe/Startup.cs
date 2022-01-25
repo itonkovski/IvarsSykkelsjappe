@@ -15,6 +15,7 @@ using IvarsSykkelsjappe.Services.Products;
 using IvarsSykkelsjappe.Hubs;
 using IvarsSykkelsjappe.Infrastructure.Photos;
 using Microsoft.AspNetCore.Http;
+using IvarsSykkelsjappe.Services.Messaging;
 
 namespace IvarsSykkelsjappe
 {
@@ -78,6 +79,7 @@ namespace IvarsSykkelsjappe
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(Configuration["SendGrid:ApiKey"]));
             services.AddTransient<IBikeService, BikeService>();
             services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<IAssistanceService, AssistanceService>();

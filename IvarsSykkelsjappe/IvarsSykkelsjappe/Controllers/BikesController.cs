@@ -1,20 +1,27 @@
-﻿using AutoMapper;
+﻿using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using IvarsSykkelsjappe.Models.Bikes;
 using IvarsSykkelsjappe.Services.Bikes;
+using IvarsSykkelsjappe.Services.Messaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IvarsSykkelsjappe.Controllers
 {
+    using static WebConstants;
+
     public class BikesController : Controller
     {
         private readonly IBikeService bikeService;
         private readonly IMapper mapper;
+        private readonly IEmailSender emailSender;
 
-        public BikesController(IBikeService bikeService, IMapper mapper)
+        public BikesController(IBikeService bikeService, IMapper mapper, IEmailSender emailSender)
         {
             this.bikeService = bikeService;
             this.mapper = mapper;
+            this.emailSender = emailSender;
         }
 
         //[Authorize]
@@ -119,5 +126,19 @@ namespace IvarsSykkelsjappe.Controllers
         //    this.bikeService.Delete(id);
         //    return RedirectToAction(nameof(AllAdmin));
         //}
+
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> SendToEmail(int id)
+        {
+            var bike = this.bikeService.SendBikeByEmail(id);
+            var html = new StringBuilder();
+            html.AppendLine($"<h1>{bike.Brand}</h1>");
+            html.AppendLine($"<h3>{bike.Model}</h3>");
+            //html.AppendLine($"<img src=\"{bike.ImageUrl}\" />");
+            await this.emailSender.SendEmailAsync("info@ivarssykkelsjappe", "IvarsSykkelsjappe", "namari6705@bubblybank.com", bike.Brand, html.ToString());
+            TempData[GlobalMessageKey] = "The email was sent successfully.";
+            return this.RedirectToAction(nameof(this.Details), new { id });
+        }
     }
 }

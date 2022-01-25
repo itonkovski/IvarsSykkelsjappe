@@ -37,8 +37,12 @@
                 @if (User.IsInRole("User"))
                 {
                     <div class="button-holder">
-                        <a asp-area="" asp-controller="" asp-action="" asp-route-id="@Model.Id" class="btn btn-warning text-uppercase">Order</a>
+                        <a asp-area="" asp-controller="" asp-action="" asp-route-id="" class="btn btn-warning text-uppercase">Order</a>
                     </div>
+
+                    <form method="post" asp-controller="Bikes" asp-action="SendToEmail" asp-route-id="@Model.Id" id="sendEmailForm">
+                    </form>
+                    <button type="submit" form="sendEmailForm" class="btn btn-primary btn-block text-uppercase">Send to email</button>
                 }
                 else if (User.IsInRole("Admin"))
                 {
@@ -47,11 +51,12 @@
                     </div>
                 }
             </div>
+            
             @*<div class="form-group text-center">
-            <div class="button-holder">
-                <a asp-area="Admin" asp-controller="Bikes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-uppercase">Edit</a>
-            </div>
-            </div>*@
+        <div class="button-holder">
+            <a asp-area="Admin" asp-controller="Bikes" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-uppercase">Edit</a>
+        </div>
+        </div>*@
         </div>
     </div>
 </section>  
