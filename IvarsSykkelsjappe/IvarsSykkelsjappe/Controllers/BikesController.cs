@@ -136,7 +136,7 @@ namespace IvarsSykkelsjappe.Controllers
             html.AppendLine($"<h1>{bike.Brand}</h1>");
             html.AppendLine($"<h3>{bike.Model}</h3>");
             //html.AppendLine($"<img src=\"{bike.ImageUrl}\" />");
-            await this.emailSender.SendEmailAsync("info@ivarssykkelsjappe", "IvarsSykkelsjappe", "namari6705@bubblybank.com", bike.Brand, html.ToString());
+            await this.emailSender.SendEmailAsync("info@ivarssykkelsjappe.no", "IvarsSykkelsjappe", "namari6705@bubblybank.com", bike.Brand, html.ToString());
             TempData[GlobalMessageKey] = "The email was sent successfully.";
             return this.RedirectToAction(nameof(this.Details), new { id });
         }
