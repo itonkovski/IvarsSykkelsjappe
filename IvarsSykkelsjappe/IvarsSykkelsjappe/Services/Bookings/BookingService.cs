@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Data;
 using IvarsSykkelsjappe.Data.Models;
 using IvarsSykkelsjappe.Models.Bookings;
@@ -16,7 +17,7 @@ namespace IvarsSykkelsjappe.Services.Bookings
             this.dbContext = dbContext;
         }
 
-        public void Add(BookingFormModel booking, string userId)
+        public async Task AddAsync(BookingFormModel booking, string userId)
         {
 
             var bookingData = new Booking
@@ -28,8 +29,8 @@ namespace IvarsSykkelsjappe.Services.Bookings
                 Details = booking.Details,
                 UserId = userId,
             };
-            this.dbContext.Bookings.Add(bookingData);
-            this.dbContext.SaveChanges();
+            await this.dbContext.Bookings.AddAsync(bookingData);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<BookingViewModel> GetAllBookings()
@@ -52,11 +53,11 @@ namespace IvarsSykkelsjappe.Services.Bookings
             return bookings;
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var booking = this.dbContext.Bookings.Find(id);
             this.dbContext.Bookings.Remove(booking);
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<BookingViewModel> MyBookings(string userId)
@@ -77,14 +78,16 @@ namespace IvarsSykkelsjappe.Services.Bookings
             return bookings;
         }
 
-        public void TakeMechanic(int id, string mechanicId, string mechanicName)
+        public async Task TakeMechanicAsync(int id, string mechanicId, string mechanicName)
         {
-            var orderData = this.dbContext.Bookings.FirstOrDefault(x => x.Id == id);
+            var orderData = this.dbContext
+                .Bookings
+                .FirstOrDefault(x => x.Id == id);
 
             orderData.MechanicId = mechanicId;
             orderData.MechanicName = mechanicName;
             orderData.IsTaken = true;
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<BookingViewModel> MyOrders(string mechanicId)

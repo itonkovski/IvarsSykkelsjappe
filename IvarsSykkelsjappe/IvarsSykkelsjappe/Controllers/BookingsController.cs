@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Models.Bookings;
 using IvarsSykkelsjappe.Services.Bookings;
 using IvarsSykkelsjappe.Services.Products;
@@ -33,7 +34,7 @@ namespace IvarsSykkelsjappe.Controllers
         [HttpPost]
         [Authorize]
         [Authorize(Roles = "Admin, User")]
-        public IActionResult BookTime(BookingFormModel bookingForm)
+        public async Task<IActionResult> BookTime(BookingFormModel bookingForm)
         {
             //if userName is needed
             //var userName = User.FindFirstValue(ClaimTypes.Name);
@@ -48,7 +49,7 @@ namespace IvarsSykkelsjappe.Controllers
             {
                 return View(bookingForm);
             }
-            this.bookingService.Add(bookingForm, clientId);
+            await this.bookingService.AddAsync(bookingForm, clientId);
             TempData[GlobalMessageKey] = "The booking was added successfully.";
 
             if (User.IsInRole("Admin"))
@@ -85,7 +86,7 @@ namespace IvarsSykkelsjappe.Controllers
         [HttpPost]
         [Authorize]
         [Authorize(Roles = "Mechanic")]
-        public IActionResult TakeOrder(int id)
+        public async Task<IActionResult> TakeOrder(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -93,7 +94,7 @@ namespace IvarsSykkelsjappe.Controllers
             }
             var mechanicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var mechanicName = User.FindFirstValue(ClaimTypes.Name);
-            this.bookingService.TakeMechanic(id, mechanicId, mechanicName);
+            await this.bookingService.TakeMechanicAsync(id, mechanicId, mechanicName);
             TempData[GlobalMessageKey] = "The order is yours now.";
             return RedirectToAction(nameof(MyOrders));
         }

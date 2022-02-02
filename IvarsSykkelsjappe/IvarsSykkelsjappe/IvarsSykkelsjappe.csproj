@@ -48,6 +48,7 @@
     <None Remove="Services\Messaging\" />
     <None Remove="SendGrid" />
     <None Remove="Areas\Admin\Views\Shared\" />
+    <None Remove="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\launchSettings.json">
@@ -112,6 +113,7 @@
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Services\Messaging\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Condition="'$(ExcludeConfigFilesFromBuildOutput)'!='true'" Update="Properties\launchSettings.json">

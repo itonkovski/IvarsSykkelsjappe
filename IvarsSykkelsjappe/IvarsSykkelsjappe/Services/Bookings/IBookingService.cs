@@ -6,17 +6,17 @@ namespace IvarsSykkelsjappe.Services.Bookings
 {
     public interface IBookingService
     {
-        void Add(BookingFormModel bike, string userId);
+        Task AddAsync(BookingFormModel bike, string userId);
 
         IEnumerable<BookingViewModel> GetAllBookings();
 
         IEnumerable<BookingViewModel> GetAllBookingsForToday();
 
-        void Delete(int id);
+        Task DeleteAsync(int id);
 
         IEnumerable<BookingViewModel> MyBookings(string userId);
 
-        void TakeMechanic(int id, string mechanicId, string mechanicName);
+        Task TakeMechanicAsync(int id, string mechanicId, string mechanicName);
 
         IEnumerable<BookingViewModel> MyOrders(string mechanicId);
 

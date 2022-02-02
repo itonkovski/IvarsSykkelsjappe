@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using IvarsSykkelsjappe.Services.Bookings;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +23,9 @@ namespace IvarsSykkelsjappe.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult>  Delete(int id)
         {
-            this.bookingService.Delete(id);
+            await this.bookingService.DeleteAsync(id);
             TempData[GlobalMessageKey] = "The booking was deleted successfully.";
             return RedirectToAction(nameof(AllBookings));
         }
