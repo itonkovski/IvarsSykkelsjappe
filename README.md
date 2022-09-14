@@ -1,5 +1,5 @@
 # IvarsSykkelsjappe
- ASP.NET Core MVC and MSSQL defense project, part of the C# Web module at Software University, Sofia
+ ASP.NET Core MVC and MSSQL project, part of the C# Web module at Software University, Sofia
  
  <h3 align="center">Connect with IvarsSykkelsjappe</h3>
 <p align="center">
