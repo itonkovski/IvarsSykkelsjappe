@@ -14,7 +14,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Username: **testMechanic@gmail.com**  
 &nbsp;&nbsp;&nbsp;&nbsp;Password: **123456** 
 
-&nbsp;&nbsp;&nbsp;&nbsp;Username: **testClient@gmail.com**  
+&nbsp;&nbsp;&nbsp;&nbsp;Username: **testUser@gmail.com**  
 &nbsp;&nbsp;&nbsp;&nbsp;Password: **123456** 
 <br/><br/>
 
